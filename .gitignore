@@ -1,3 +1,4 @@
+# GITHUB generated Rules
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
@@ -7,3 +8,13 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+
+
+# Custom Rules
+build
+CMakeLists.txt.user
+.vscode
+*_autogen
+nx-software-updater
+qrc_qml.cpp
+src/ui/qml.qrc.depends
