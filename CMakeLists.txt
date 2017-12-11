@@ -18,7 +18,7 @@ find_package(Qt5Gui)
 # add the qml.qrc file
 qt5_add_resources (
     qml_QRC
-    src/ui/qml.qrc
+    src/ui/qml/qml.qrc
 )
 
 # add source files
@@ -53,6 +53,11 @@ set (
     src/entities/package.h
     src/entities/package.cpp
     # END Entities
+
+    # START View Controllers
+    src/ui/remindlaterviewcontroller.h
+    src/ui/remindlaterviewcontroller.cpp
+    # END View Controllers
 )
 
 
