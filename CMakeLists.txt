@@ -26,6 +26,33 @@ set (
     SOURCE
     ${SOURCE}
     src/main.cpp
+
+    # START Interactors
+    src/interactors/interactor.h
+    src/interactors/interactor.cpp
+
+    src/interactors/downloadandinstallinteractor.h
+    src/interactors/downloadandinstallinteractor.cpp
+
+    src/interactors/packagelistinteractor.h
+    src/interactors/packagelistinteractor.cpp
+
+    src/interactors/remindlaterinteractor.h
+    src/interactors/remindlaterinteractor.cpp
+
+    src/interactors/superuseraccessinteractor.h
+    src/interactors/superuseraccessinteractor.cpp
+    # END Interactors
+
+    # START Helpers
+    src/helpers/apthelper.h
+    src/helpers/apthelper.cpp
+    # END Helpers
+
+    # START Entities
+    src/entities/package.h
+    src/entities/package.cpp
+    # END Entities
 )
 
 
