@@ -7,6 +7,8 @@ class SuperuserAccessInteractor : public Interactor {
  public:
   SuperuserAccessInteractor();
   ~SuperuserAccessInteractor();
+
+  void execute() override;
 };
 
 #endif

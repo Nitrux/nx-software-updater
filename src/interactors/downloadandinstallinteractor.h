@@ -7,6 +7,8 @@ class DownloadAndInstallInteractor : public Interactor {
  public:
   DownloadAndInstallInteractor();
   virtual ~DownloadAndInstallInteractor();
+
+  void execute() override;
 };
 
 #endif

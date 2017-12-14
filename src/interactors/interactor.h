@@ -7,6 +7,8 @@ class Interactor : public QObject {
  public:
   Interactor(QObject* parent = nullptr);
   virtual ~Interactor();
+
+  virtual void execute() = 0;
 };
 
 #endif

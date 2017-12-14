@@ -7,6 +7,8 @@ class PackageListInteractor : public Interactor {
  public:
   PackageListInteractor();
   virtual ~PackageListInteractor();
+
+  void execute() override;
 };
 
 #endif
