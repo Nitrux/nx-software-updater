@@ -6,5 +6,7 @@
         <file>PackageListComponentForm.ui.qml</file>
         <file>ButtonsContainerComponent.qml</file>
         <file>ButtonsContainerComponentForm.ui.qml</file>
+        <file>FetchingListComponent.qml</file>
+        <file>FetchingListComponentForm.ui.qml</file>
     </qresource>
 </RCC>

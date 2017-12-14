@@ -14,6 +14,12 @@ Rectangle {
         anchors.topMargin: 0
     }
 
+    FetchingListComponent {
+        id: fetchingListComponent
+        anchors.top: parent.top
+        anchors.topMargin: 0
+    }
+
     ButtonsContainerComponent {
         id: buttonsContainerComponent
 
