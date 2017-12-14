@@ -50,8 +50,11 @@ set (
     # END Helpers
 
     # START Entities
-    src/entities/package.h
-    src/entities/package.cpp
+    src/entities/packages.h
+    src/entities/packages.cpp
+
+    src/entities/reminder.h
+    src/entities/reminder.cpp
     # END Entities
 
     # START View Controllers

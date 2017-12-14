@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
   QCoreApplication::setOrganizationDomain("nxos.org");
   QCoreApplication::setApplicationName("nx-software-updater");
 
-  engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+  engine.load(QUrl(QStringLiteral("qrc:/MainComponent.qml")));
 
   return app.exec();
 }

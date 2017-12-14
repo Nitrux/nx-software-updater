@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>MainComponent.qml</file>
+        <file>MainComponentForm.ui.qml</file>
+        <file>PackageListComponent.qml</file>
+        <file>PackageListComponentForm.ui.qml</file>
+        <file>ButtonsContainerComponent.qml</file>
+        <file>ButtonsContainerComponentForm.ui.qml</file>
     </qresource>
 </RCC>
