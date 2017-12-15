@@ -14,14 +14,13 @@ Rectangle {
         color: "#666"
         anchors.top: parent.top
         anchors.topMargin: 20
-        anchors.verticalCenter: fetchingIndicator.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 20
         font.pixelSize: 14
     }
 
     PlasmaComponents.ProgressBar {
-        id: progressBar
+        id: fetchingIndicator
         indeterminate: true
         anchors.right: parent.right
         anchors.rightMargin: 20
@@ -29,6 +28,5 @@ Rectangle {
         anchors.leftMargin: 20
         anchors.top: fetchingListTxt.bottom
         anchors.topMargin: 0
-        value: 0.5
     }
 }
