@@ -47,6 +47,9 @@ set (
     # START Helpers
     src/helpers/apthelper.h
     src/helpers/apthelper.cpp
+
+    src/helpers/shellhelper.h
+    src/helpers/shellhelper.cpp
     # END Helpers
 
     # START Entities
@@ -55,6 +58,9 @@ set (
 
     src/entities/reminder.h
     src/entities/reminder.cpp
+
+    src/entities/superuser.h
+    src/entities/superuser.cpp
     # END Entities
 
     # START View Controllers
