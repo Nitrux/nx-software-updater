@@ -1,5 +1,5 @@
 project(nx-software-updater)
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.2)
 
 enable_testing()
 
@@ -69,7 +69,6 @@ set (
     # END View Controllers
 )
 
-
 add_executable (
     ${PROJECT_NAME}
     ${SOURCE}
@@ -81,3 +80,5 @@ target_link_libraries(
     Qt5::Qml
     Qt5::Quick
 )
+
+add_subdirectory(src/tests)

@@ -5,6 +5,8 @@ class Superuser {
  public:
   Superuser();
   virtual ~Superuser();
+
+  bool checkPermission();
 };
 
 #endif

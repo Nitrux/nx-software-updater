@@ -17,4 +17,5 @@ CMakeLists.txt.user
 *_autogen
 nx-software-updater
 qrc_qml.cpp
-src/ui/qml/qml.qrc.depends
+qml.qrc.depends
+entities_tests
