@@ -12,10 +12,12 @@ class EntitiesTests : public QObject {
   void testSetLastNotificationDate() {
     Reminder reminder;
 
-    qDebug() << "testing...";
-
     reminder.setLastNotificationDate(QDate::currentDate());
     QVERIFY(reminder.getLastNotificationDate() == QDate::currentDate());
+
+    reminder.setLastNotificationDate(QDate::currentDate().addDays(1));
+    QVERIFY(reminder.getLastNotificationDate() ==
+            QDate::currentDate().addDays(1));
   }
 };
 
