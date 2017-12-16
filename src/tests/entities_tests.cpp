@@ -9,7 +9,7 @@ class EntitiesTests : public QObject {
   Q_OBJECT
 
  private slots:
-  void testSetLastNotificationDate() {
+  void testGetSetLastNotificationDate() {
     Reminder reminder;
 
     reminder.setLastNotificationDate(QDate::currentDate());
