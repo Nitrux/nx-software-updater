@@ -5,7 +5,9 @@
 Reminder::Reminder() {}
 Reminder::~Reminder() {}
 
-bool Reminder::shouldShowNotification(QDate date) {}
+bool Reminder::shouldShowNotification() {
+  return false;
+}
 
 void Reminder::createNotification() {}
 

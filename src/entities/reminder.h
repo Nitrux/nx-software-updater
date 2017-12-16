@@ -8,7 +8,7 @@ class Reminder {
   Reminder();
   virtual ~Reminder();
 
-  bool shouldShowNotification(QDate date);
+  bool shouldShowNotification();
   void createNotification();
   QDate getLastNotificationDate();
   void setLastNotificationDate(QDate date);
