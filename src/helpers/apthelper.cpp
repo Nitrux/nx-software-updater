@@ -1,9 +1,10 @@
 #include "apthelper.h"
+#include "../dto/packagedto.h"
 
 AptHelper::AptHelper() {}
 AptHelper::~AptHelper() {}
 
-QList<QString> AptHelper::aptList() {}
+QList<PackageDTO> AptHelper::aptList() {}
 
 void AptHelper::aptUpdate(bool hasSuperuserAccess) {}
 

@@ -1,6 +1,9 @@
 #include "packages.h"
+#include "../dto/packagedto.h"
 
-Packages::Packages() {}
+Packages::Packages(AptHelper* aptHelper) {
+  this->aptHelper = aptHelper;
+}
 Packages::~Packages() {}
 
-QList<QString> Packages::fetchListOfPackages() {}
+QList<PackageDTO> Packages::fetchListOfPackages() {}

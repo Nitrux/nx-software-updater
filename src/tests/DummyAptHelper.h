@@ -1,18 +1,17 @@
-
-#ifndef HELPERS_APTHELPER_H
-#define HELPERS_APTHELPER_H
-
 #include <QList>
+
+#include "../helpers/apthelper.h"
 #include "../dto/packagedto.h"
 
-class AptHelper {
+class DummyAptHelper : public AptHelper {
+ private:
+  QList<PackageDTO> packageList;
+
  public:
-  AptHelper();
-  virtual ~AptHelper();
+  DummyAptHelper();
+  ~DummyAptHelper();
 
   QList<PackageDTO> aptList();
   void aptUpdate(bool hasSuperuserAccess);
   void aptUpgrade(bool hasSuperuserAccess);
 };
-
-#endif

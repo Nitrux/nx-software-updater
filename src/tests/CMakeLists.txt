@@ -59,6 +59,16 @@ set (
     ../ui/remindlaterviewcontroller.cpp
     # END View Controllers
 
+    # START DTO
+    ../dto/packagedto.h
+    ../dto/packagedto.cpp
+    # END DTO
+
+    # START Dummy Classes
+    DummyAptHelper.h
+    DummyAptHelper.cpp
+    # END Dummy Classes
+
     entities_tests.cpp
 
     ${ENTITIES_SOURCE}

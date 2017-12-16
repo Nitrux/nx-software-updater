@@ -4,13 +4,19 @@
 #include <QList>
 #include <QString>
 
+#include "../helpers/apthelper.h"
+#include "../dto/packagedto.h"
+
 class Packages {
+ private:
+  AptHelper* aptHelper;
+
  public:
-  Packages();
+  Packages(AptHelper* aptHelper);
   virtual ~Packages();
 
-  QList<QString> fetchListOfPackages();
-  int updatePackages();
+  QList<PackageDTO> fetchListOfPackages();
+  int upgradePackages();
 };
 
 #endif

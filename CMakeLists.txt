@@ -67,6 +67,11 @@ set (
     src/ui/remindlaterviewcontroller.h
     src/ui/remindlaterviewcontroller.cpp
     # END View Controllers
+
+    # START DTO
+    src/dto/packagedto.h
+    src/dto/packagedto.cpp
+    # END DTO
 )
 
 add_executable (

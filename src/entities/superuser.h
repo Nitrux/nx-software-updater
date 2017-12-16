@@ -1,4 +1,4 @@
-#ifndef ENTITIES_REMINDER_H
+#ifndef ENTITIES_SUPERUSER_H
 #define ENTITIES_SUPERUSER_H
 
 class Superuser {

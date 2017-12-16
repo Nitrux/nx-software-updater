@@ -1,3 +1,8 @@
 #include "superuser.h"
 
-bool Superuser::checkPermission() {}
+Superuser::Superuser() {}
+Superuser::~Superuser() {}
+
+bool Superuser::checkPermission() {
+  return false;
+}
