@@ -2,8 +2,10 @@
 #include <QQmlApplicationEngine>
 
 #include "ui/remindlaterviewcontroller.h"
+#include "ui/packagelistviewcontroller.h"
 
 RemindLaterViewController* remindlaterviewcontroller = nullptr;
+PackageListViewController* packagelistviewcontroller = nullptr;
 
 static QObject* remindlaterviewcontroller_singleton_provider(
     QQmlEngine* engine,
@@ -18,6 +20,19 @@ static QObject* remindlaterviewcontroller_singleton_provider(
   return remindlaterviewcontroller;
 }
 
+static QObject* packagelistviewcontroller_singleton_provider(
+    QQmlEngine* engine,
+    QJSEngine* scriptEngine) {
+  Q_UNUSED(engine)
+  Q_UNUSED(scriptEngine)
+
+  if (packagelistviewcontroller == nullptr) {
+    packagelistviewcontroller = new PackageListViewController();
+  }
+
+  return packagelistviewcontroller;
+}
+
 int main(int argc, char* argv[]) {
   const char* uri = "org.nxos.softwareupdater";
 
@@ -28,8 +43,9 @@ int main(int argc, char* argv[]) {
       uri, 1, 0, "RemindLaterViewController",
       remindlaterviewcontroller_singleton_provider);
 
-  //  qmlRegisterType<RemindLaterViewController>(uri, 1, 0,
-  //                                             "RemindLaterViewController");
+  qmlRegisterSingletonType<PackageListViewController>(
+      uri, 1, 0, "PackageListViewController",
+      packagelistviewcontroller_singleton_provider);
 
   QCoreApplication::addLibraryPath("./");
   QCoreApplication::setOrganizationName("NXOS");

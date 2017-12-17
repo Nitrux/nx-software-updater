@@ -69,6 +69,9 @@ set (
 
     src/ui/remindlaterviewcontroller.h
     src/ui/remindlaterviewcontroller.cpp
+
+    src/ui/packagelistviewcontroller.cpp
+    src/ui/packagelistviewcontroller.h
     # END View Controllers
 
     # START DTO
