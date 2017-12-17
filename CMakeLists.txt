@@ -64,6 +64,9 @@ set (
     # END Entities
 
     # START View Controllers
+    src/ui/viewcontroller.h
+    src/ui/viewcontroller.cpp
+
     src/ui/remindlaterviewcontroller.h
     src/ui/remindlaterviewcontroller.cpp
     # END View Controllers

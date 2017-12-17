@@ -4,9 +4,7 @@
 
 using namespace std;
 
-RemindLaterViewController::RemindLaterViewController(QObject* parent)
-    : QObject(parent) {}
-
+RemindLaterViewController::RemindLaterViewController() {}
 RemindLaterViewController::~RemindLaterViewController() {}
 
 void RemindLaterViewController::clicked() {

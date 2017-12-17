@@ -1,13 +1,11 @@
 #ifndef UI_REMINDLATERCONTROLLER_H
 #define UI_REMINDLATERCONTROLLER_H
 
-#include <QObject>
+#include "viewcontroller.h"
 
-class RemindLaterViewController : public QObject {
-  Q_OBJECT
-
+class RemindLaterViewController : public ViewController {
  public:
-  RemindLaterViewController(QObject* parent = nullptr);
+  RemindLaterViewController();
   virtual ~RemindLaterViewController();
 
   Q_INVOKABLE void clicked();
