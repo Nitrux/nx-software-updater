@@ -4,6 +4,8 @@
 #include <QObject>
 
 class Interactor : public QObject {
+  Q_OBJECT
+
  public:
   Interactor(QObject* parent = nullptr);
   virtual ~Interactor();
