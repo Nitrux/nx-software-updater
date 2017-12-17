@@ -7,17 +7,23 @@ Rectangle {
     id: container
     width: 600
     height: 350
-
-    PackageListComponent {
-        id: packageListComponent
-        anchors.top: parent.top
-        anchors.topMargin: 0
-    }
+    color: '#eeeeee'
 
     FetchingListComponent {
         id: fetchingListComponent
         anchors.top: parent.top
         anchors.topMargin: 0
+    }
+
+    PackageListComponent {
+        id: packageListComponent
+
+        anchors.top: fetchingListComponent.bottom
+        anchors.topMargin: 0
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        anchors.right: parent.right
+        anchors.rightMargin: 20
     }
 
     ButtonsContainerComponent {

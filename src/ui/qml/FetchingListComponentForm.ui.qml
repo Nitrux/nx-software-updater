@@ -3,9 +3,9 @@ import QtQuick.Controls 2.2
 
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-Rectangle {
+Item {
     width: 600
-    height: 250
+    height: 90
 
     PlasmaComponents.Label {
         id: fetchingListTxt

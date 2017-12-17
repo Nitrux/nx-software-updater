@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 
 import org.kde.plasma.components 2.0 as PlasmaComponents
 
-Rectangle {
+Item {
     id: rectangle
     width: 600
     height: 100
