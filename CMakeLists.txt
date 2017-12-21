@@ -74,6 +74,10 @@ set (
     src/ui/packagelistviewcontroller.h
     # END View Controllers
 
+    # START Listeners
+    src/listeners/packagelistlistener.h
+    # END Listeners
+
     # START DTO
     src/dto/packagedto.h
     src/dto/packagedto.cpp

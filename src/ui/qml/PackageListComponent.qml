@@ -10,7 +10,11 @@ PackageListComponentForm {
         target: SoftwareUpdater.PackageListViewController
 
         onPackageListChanged: {
-            console.log('>>>> QML paclageListChanged....')
+            console.log('>>>> QML packageListChanged....')
+
+            for (var i = 0; i<packageList.length; i++) {
+                console.log(JSON.stringify(packageList[i]));
+            }
         }
     }
 }

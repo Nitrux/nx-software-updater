@@ -32,21 +32,3 @@ QString PackageDTO::getSize() {
   return this->size;
 }
 /* End GETTERS */
-
-/* Start SETTERS */
-void PackageDTO::setPackageName(QString packageName) {
-  this->packageName = packageName;
-}
-void PackageDTO::setDescription(QString description) {
-  this->description = description;
-}
-void PackageDTO::setVersion(QString version) {
-  this->version = version;
-}
-void PackageDTO::setIconUrl(QString iconUrl) {
-  this->iconUrl = iconUrl;
-}
-void PackageDTO::setSize(QString size) {
-  this->size = size;
-}
-/* End SETTERS */

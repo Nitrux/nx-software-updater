@@ -20,13 +20,6 @@ class PackageDTO {
   QString getVersion();
   QString getIconUrl();
   QString getSize();
-
-  /* SETTERS */
-  void setPackageName(QString packageName);
-  void setDescription(QString description);
-  void setVersion(QString version);
-  void setIconUrl(QString iconUrl);
-  void setSize(QString size);
 };
 
 #endif

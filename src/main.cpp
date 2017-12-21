@@ -3,6 +3,9 @@
 
 #include "ui/remindlaterviewcontroller.h"
 #include "ui/packagelistviewcontroller.h"
+#include "helpers/apthelper.h"
+
+AptHelper* aptHelper = nullptr;
 
 RemindLaterViewController* remindlaterviewcontroller = nullptr;
 PackageListViewController* packagelistviewcontroller = nullptr;
@@ -27,7 +30,7 @@ static QObject* packagelistviewcontroller_singleton_provider(
   Q_UNUSED(scriptEngine)
 
   if (packagelistviewcontroller == nullptr) {
-    packagelistviewcontroller = new PackageListViewController();
+    packagelistviewcontroller = new PackageListViewController(aptHelper);
   }
 
   return packagelistviewcontroller;
@@ -39,6 +42,11 @@ int main(int argc, char* argv[]) {
   QGuiApplication app(argc, argv);
   QQmlApplicationEngine engine;
 
+  /*    INIT Entities and Helpers   */
+  aptHelper = new AptHelper();
+  /*    END INIT Entities and Helpers   */
+
+  /*    INIT View Controllers   */
   qmlRegisterSingletonType<RemindLaterViewController>(
       uri, 1, 0, "RemindLaterViewController",
       remindlaterviewcontroller_singleton_provider);
@@ -46,6 +54,7 @@ int main(int argc, char* argv[]) {
   qmlRegisterSingletonType<PackageListViewController>(
       uri, 1, 0, "PackageListViewController",
       packagelistviewcontroller_singleton_provider);
+  /*    END INIT View Controllers   */
 
   QCoreApplication::addLibraryPath("./");
   QCoreApplication::setOrganizationName("NXOS");
