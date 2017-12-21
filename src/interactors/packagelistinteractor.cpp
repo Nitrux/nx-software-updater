@@ -10,6 +10,6 @@ PackageListInteractor::PackageListInteractor(AptHelper* aptHelper,
 PackageListInteractor::~PackageListInteractor() {}
 
 void PackageListInteractor::execute() {
-  this->aptHelper->aptUpdate(true);
+  this->aptHelper->aptUpdate();
   this->packageListListener->onPackageListChanged(this->aptHelper->aptList());
 }

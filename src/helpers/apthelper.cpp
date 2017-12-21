@@ -6,6 +6,6 @@ AptHelper::~AptHelper() {}
 
 QList<PackageDTO> AptHelper::aptList() {}
 
-void AptHelper::aptUpdate(bool hasSuperuserAccess) {}
+void AptHelper::aptUpdate() {}
 
-void AptHelper::aptUpgrade(bool hasSuperuserAccess) {}
+void AptHelper::aptUpgrade() {}

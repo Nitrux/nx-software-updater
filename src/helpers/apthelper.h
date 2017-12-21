@@ -11,8 +11,8 @@ class AptHelper {
   virtual ~AptHelper();
 
   QList<PackageDTO> aptList();
-  void aptUpdate(bool hasSuperuserAccess);
-  void aptUpgrade(bool hasSuperuserAccess);
+  void aptUpdate();
+  void aptUpgrade();
 };
 
 #endif
