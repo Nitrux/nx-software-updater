@@ -9,16 +9,13 @@ Rectangle {
     height: 350
     color: '#eeeeee'
 
-    FetchingListComponent {
-        id: fetchingListComponent
-        anchors.top: parent.top
-        anchors.topMargin: 0
-    }
+    property alias packageListComponent: packageListComponent
+    property alias buttonsContainerComponent: buttonsContainerComponent
 
     PackageListComponent {
         id: packageListComponent
 
-        anchors.top: fetchingListComponent.bottom
+        anchors.top: parent.top
         anchors.topMargin: 0
         anchors.left: parent.left
         anchors.leftMargin: 20
@@ -31,5 +28,7 @@ Rectangle {
 
         anchors.top: packageListComponent.bottom
         anchors.topMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 20
     }
 }

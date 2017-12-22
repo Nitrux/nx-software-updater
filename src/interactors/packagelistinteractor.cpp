@@ -4,11 +4,10 @@
 #include "../listeners/packagelistlistener.h"
 #include "../helpers/apthelper.h"
 
-PackageListInteractor::PackageListInteractor(
-    AptHelper* aptHelper,
-    PackageListViewController* viewController) {
+PackageListInteractor::PackageListInteractor(AptHelper* aptHelper,
+                                             PackageListListener* listener) {
   this->aptHelper = aptHelper;
-  this->viewController = viewController;
+  this->listener = listener;
 }
 PackageListInteractor::~PackageListInteractor() {}
 
@@ -17,5 +16,5 @@ void PackageListInteractor::execute() {
 
   packageList = this->aptHelper->aptList();
 
-  this->viewController->onPackageListReady(&packageList);
+  this->listener->onPackageListReady(&packageList);
 }

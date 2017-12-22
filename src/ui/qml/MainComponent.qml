@@ -14,5 +14,45 @@ ApplicationWindow {
     title: qsTr("NX Software Updater")
 
     MainComponentForm {
+        id: mainComponent
+        Component.onCompleted: {
+            SoftwareUpdater.PackageListViewController.fetchPackageList();
+        }
+
+        buttonsContainerComponent.btnQuit.onClicked: {
+            Qt.quit();
+        }
+        buttonsContainerComponent.btnUpdate.onClicked: {
+            mainComponent.packageListComponent.packageModel = "";
+
+            packageListComponent.fetchingListComponent.showUpdatingPackages()
+            SoftwareUpdater.UpdateViewController.doUpdate();
+        }
+    }
+
+    Connections {
+        target: SoftwareUpdater.PackageListViewController
+
+        onPackageListChanged: {
+            console.log('>>>> QML packageListChanged....')
+
+            mainComponent.packageListComponent.fetchingListComponent.showPackageListText()
+            mainComponent.packageListComponent.packageModel = packageList
+        }
+    }
+
+    Connections {
+        target: SoftwareUpdater.UpdateViewController
+
+        onUpdateComplete: {
+            console.log('>>>> Update Complete....');
+
+            mainComponent.packageListComponent.fetchingListComponent.showFetchingPackages()
+            SoftwareUpdater.PackageListViewController.fetchPackageList();
+        }
+    }
+
+    function getInstance() {
+        return mainComponent
     }
 }

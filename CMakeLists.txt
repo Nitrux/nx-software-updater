@@ -42,6 +42,12 @@ set (
 
     src/interactors/superuseraccessinteractor.h
     src/interactors/superuseraccessinteractor.cpp
+
+    src/interactors/updateinteractor.h
+    src/interactors/updateinteractor.cpp
+
+    src/interactors/upgradeinteractor.h
+    src/interactors/upgradeinteractor.cpp
     # END Interactors
 
     # START Helpers
@@ -72,10 +78,18 @@ set (
 
     src/ui/packagelistviewcontroller.cpp
     src/ui/packagelistviewcontroller.h
+
+    src/ui/updateviewcontroller.cpp
+    src/ui/updateviewcontroller.h
+
+    src/ui/upgradeviewcontroller.cpp
+    src/ui/upgradeviewcontroller.h
     # END View Controllers
 
     # START Listeners
     src/listeners/packagelistlistener.h
+    src/listeners/updatelistener.h
+    src/listeners/upgradelistener.h
     # END Listeners
 
     # START DTO

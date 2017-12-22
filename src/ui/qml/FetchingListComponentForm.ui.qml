@@ -7,6 +7,12 @@ Item {
     width: 600
     height: 90
 
+    property alias fetchingListTxt: fetchingListTxt
+    property alias packageListTxt: packageListTxt
+    property alias fetchingIndicator: fetchingIndicator
+    property alias updatingPackageListTxt: updatingPackageListTxt
+    property alias upgradingPackageListTxt: upgradingPackageListTxt
+
     PlasmaComponents.Label {
         id: fetchingListTxt
 
@@ -17,6 +23,44 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: 20
         font.pixelSize: 14
+    }
+
+    PlasmaComponents.Label {
+        id: packageListTxt
+
+        text: qsTr("List of Packages to be Upgraded")
+        color: "#666"
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        font.pixelSize: 14
+        visible: false
+    }
+
+    PlasmaComponents.Label {
+        id: updatingPackageListTxt
+
+        text: qsTr("Updating Package List")
+        color: "#666"
+        anchors.top: parent.top
+        anchors.topMargin: 20
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        font.pixelSize: 14
+        visible: false
+    }
+
+    PlasmaComponents.Label {
+        id: upgradingPackageListTxt
+
+        text: qsTr("Downloading and Installing Updates")
+        color: "#666"
+        anchors.top: parent.top
+        anchors.topMargin: 20
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        font.pixelSize: 14
+        visible: false
     }
 
     PlasmaComponents.ProgressBar {

@@ -6,6 +6,7 @@
 #include <string>
 
 #include "../dto/packagedto.h"
+#include "shellhelper.h"
 
 class AptHelper {
  public:
@@ -18,6 +19,7 @@ class AptHelper {
 
  private:
   QList<PackageDTO*> parsePackageListFile(std::string path);
+  ShellHelper* shellHelper;
 };
 
 #endif

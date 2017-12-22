@@ -10,19 +10,22 @@
 #include "../listeners/packagelistlistener.h"
 #include "viewcontroller.h"
 
-class PackageListViewController : public ViewController {
+class PackageListViewController : public ViewController,
+                                  public PackageListListener {
   Q_OBJECT
 
  public:
   PackageListViewController(AptHelper* aptHelper);
   virtual ~PackageListViewController();
-  void onPackageListReady(QList<PackageDTO*>* packageList);
+
+ protected:
+  virtual void onPackageListReady(QList<PackageDTO*>* packageList);
 
  private:
   AptHelper* aptHelper;
 
  public slots:
-  void updateClicked();
+  void fetchPackageList();
 
  signals:
   void packageListChanged(QVariantList packageList);

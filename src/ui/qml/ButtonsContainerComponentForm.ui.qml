@@ -7,8 +7,10 @@ Item {
     id: rectangle
     width: 600
     height: 100
-    property alias button3: button3
-    property alias button: button
+    property alias btnUpdate: btnUpdate
+    property alias btnUpgrade: btnUpgrade
+    property alias btnRemindLater: btnRemindLater
+    property alias btnQuit: btnQuit
 
     Row {
         id: row
@@ -21,26 +23,27 @@ Item {
         layoutDirection: Qt.RightToLeft
 
         PlasmaComponents.Button {
-            id: button
+            id: btnUpgrade
 
-            text: qsTr("Update Now")
+            text: qsTr("Upgrade Now")
             anchors.verticalCenter: parent.verticalCenter
         }
 
         PlasmaComponents.Button {
-            id: button1
-            text: qsTr("Try Again")
+            id: btnUpdate
+            text: qsTr("Update")
             anchors.verticalCenter: parent.verticalCenter
         }
 
         PlasmaComponents.Button {
-            id: button2
+            id: btnRemindLater
             text: qsTr("Remind Later")
             anchors.verticalCenter: parent.verticalCenter
+            visible: false
         }
 
         PlasmaComponents.Button {
-            id: button3
+            id: btnQuit
             text: qsTr("Quit")
             anchors.verticalCenter: parent.verticalCenter
         }

@@ -1,41 +1,51 @@
 #include <QDebug>
-#include <fstream>
 #include <QFile>
 #include <string>
 #include <regex>
-#include <iostream>
 
 #include "apthelper.h"
 #include "../dto/packagedto.h"
 
 using namespace std;
 
-AptHelper::AptHelper() {}
+AptHelper::AptHelper() {
+  this->shellHelper = new ShellHelper();
+}
 AptHelper::~AptHelper() {}
 
 QList<PackageDTO*> AptHelper::aptList() {
   QList<PackageDTO*> packageList;
-  std::string line,
+  string line,
       upgradablePackagesListPath =
           "/home/anupam/.nx-software-updater/upgradable",
       cmd = "rm -r " + upgradablePackagesListPath + " && touch " +
             upgradablePackagesListPath + " && apt-get --just-print upgrade > " +
             upgradablePackagesListPath;
-  std::ifstream fileUpgradablePackagesListPath;
-
   /**
     * Read List of Upgradable packages from apt-get and store in temporary file
     */
-  system(cmd.c_str());
+  this->shellHelper->runCommand(cmd);
 
   return this->parsePackageListFile(upgradablePackagesListPath);
 }
 
-void AptHelper::aptUpdate() {}
+void AptHelper::aptUpdate() {
+  string cmd =
+      "apt-get update --assume-yes > "
+      "/home/anupam/.nx-software-updater/update-output";
 
-void AptHelper::aptUpgrade() {}
+  this->shellHelper->runCommand(cmd);
+}
 
-QList<PackageDTO*> AptHelper::parsePackageListFile(std::string path) {
+void AptHelper::aptUpgrade() {
+  string cmd =
+      "apt-get updgrade --assume-no > "
+      "/home/anupam/.nx-software-updater/upgrade-output";
+
+  this->shellHelper->runCommand(cmd);
+}
+
+QList<PackageDTO*> AptHelper::parsePackageListFile(string path) {
   QList<PackageDTO*> packageList;
 
   QFile file(path.c_str());

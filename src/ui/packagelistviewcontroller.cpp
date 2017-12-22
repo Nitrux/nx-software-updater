@@ -14,8 +14,8 @@ PackageListViewController::PackageListViewController(AptHelper* aptHelper) {
 }
 PackageListViewController::~PackageListViewController() {}
 
-void PackageListViewController::updateClicked() {
-  qDebug() << "Update clicked";
+void PackageListViewController::fetchPackageList() {
+  qDebug() << "Fetching Package List....";
 
   PackageListInteractor* packageListInteractor =
       new PackageListInteractor(this->aptHelper, this);

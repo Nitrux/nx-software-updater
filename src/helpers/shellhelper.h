@@ -1,15 +1,17 @@
 #ifndef HELPERS_SHELLHELPER_H
 #define HELPERS_SHELLHELPER_H
 
-#include <QString>
+#include <string>
+
+using namespace std;
 
 class ShellHelper {
  public:
   ShellHelper();
   virtual ~ShellHelper();
 
-  int runCommand(QString cmd);
-  int runCommandWithSudo(QString cmd);
+  int runCommand(string cmd);
+  int runCommandWithSudo(string cmd);
 };
 
 #endif

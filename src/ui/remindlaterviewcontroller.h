@@ -7,8 +7,6 @@ class RemindLaterViewController : public ViewController {
  public:
   RemindLaterViewController();
   virtual ~RemindLaterViewController();
-
-  Q_INVOKABLE void clicked();
 };
 
 #endif

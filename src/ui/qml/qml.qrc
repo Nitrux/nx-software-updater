@@ -8,5 +8,8 @@
         <file>ButtonsContainerComponentForm.ui.qml</file>
         <file>FetchingListComponent.qml</file>
         <file>FetchingListComponentForm.ui.qml</file>
+        <file>PackageListItemDelegate.qml</file>
+        <file>PackageListItemDelegateForm.ui.qml</file>
+        <file>ic_package.png</file>
     </qresource>
 </RCC>
