@@ -3,15 +3,16 @@
 
 #include "interactor.h"
 #include "../helpers/apthelper.h"
-#include "../listeners/packagelistlistener.h"
+#include "../ui/packagelistviewcontroller.h"
 
 class PackageListInteractor : public Interactor {
  private:
   AptHelper* aptHelper;
-  PackageListListener* packageListListener;
+  PackageListViewController* viewController;
 
  public:
-  PackageListInteractor(AptHelper* aptHelper, PackageListListener* listener);
+  PackageListInteractor(AptHelper* aptHelper,
+                        PackageListViewController* viewController);
   virtual ~PackageListInteractor();
 
   void execute();

@@ -2,6 +2,7 @@
 #include <QList>
 #include <QVariant>
 #include <QVariantList>
+#include <QtConcurrent/QtConcurrent>
 
 #include "packagelistviewcontroller.h"
 #include "../dto/packagedto.h"
@@ -16,22 +17,24 @@ PackageListViewController::~PackageListViewController() {}
 void PackageListViewController::updateClicked() {
   qDebug() << "Update clicked";
 
-  PackageListInteractor packageListInteractor(this->aptHelper, this);
-  packageListInteractor.execute();
+  PackageListInteractor* packageListInteractor =
+      new PackageListInteractor(this->aptHelper, this);
+
+  QtConcurrent::run([=]() { packageListInteractor->execute(); });
 }
 
-void PackageListViewController::onPackageListChanged(
-    QList<PackageDTO> packageList) {
+void PackageListViewController::onPackageListReady(
+    QList<PackageDTO*>* packageList) {
   QVariantList qvPackageList;
 
-  for (PackageDTO package : packageList) {
+  for (PackageDTO* package : *packageList) {
     QVariantMap packageData;
 
-    packageData["packageName"] = package.getPackageName();
-    packageData["description"] = package.getDescription();
-    packageData["iconUrl"] = package.getIconUrl();
-    packageData["size"] = package.getSize();
-    packageData["version"] = package.getVersion();
+    packageData["packageName"] = package->getPackageName();
+    packageData["description"] = package->getDescription();
+    packageData["iconUrl"] = package->getIconUrl();
+    packageData["size"] = package->getSize();
+    packageData["version"] = package->getVersion();
 
     qvPackageList.append(packageData);
   }

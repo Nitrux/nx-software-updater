@@ -9,10 +9,10 @@ class PackageDTO {
 
  public:
   PackageDTO(QString packageName,
-             QString description,
-             QString version,
-             QString iconUrl,
-             QString size);
+             QString description = "",
+             QString version = "",
+             QString iconUrl = "",
+             QString size = "");
 
   /* GETTERS */
   QString getPackageName();

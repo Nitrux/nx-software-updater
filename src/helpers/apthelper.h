@@ -3,6 +3,8 @@
 #define HELPERS_APTHELPER_H
 
 #include <QList>
+#include <string>
+
 #include "../dto/packagedto.h"
 
 class AptHelper {
@@ -10,9 +12,12 @@ class AptHelper {
   AptHelper();
   virtual ~AptHelper();
 
-  QList<PackageDTO> aptList();
+  QList<PackageDTO*> aptList();
   void aptUpdate();
   void aptUpgrade();
+
+ private:
+  QList<PackageDTO*> parsePackageListFile(std::string path);
 };
 
 #endif

@@ -10,18 +10,16 @@
 #include "../listeners/packagelistlistener.h"
 #include "viewcontroller.h"
 
-class PackageListViewController : public ViewController,
-                                  public PackageListListener {
+class PackageListViewController : public ViewController {
   Q_OBJECT
-
- private:
-  AptHelper* aptHelper;
 
  public:
   PackageListViewController(AptHelper* aptHelper);
   virtual ~PackageListViewController();
+  void onPackageListReady(QList<PackageDTO*>* packageList);
 
-  void onPackageListChanged(QList<PackageDTO> packageList);
+ private:
+  AptHelper* aptHelper;
 
  public slots:
   void updateClicked();

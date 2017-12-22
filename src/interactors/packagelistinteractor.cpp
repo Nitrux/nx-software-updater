@@ -1,15 +1,21 @@
+#include <QDebug>
+
 #include "packagelistinteractor.h"
 #include "../listeners/packagelistlistener.h"
 #include "../helpers/apthelper.h"
 
-PackageListInteractor::PackageListInteractor(AptHelper* aptHelper,
-                                             PackageListListener* listener) {
+PackageListInteractor::PackageListInteractor(
+    AptHelper* aptHelper,
+    PackageListViewController* viewController) {
   this->aptHelper = aptHelper;
-  this->packageListListener = packageListListener;
+  this->viewController = viewController;
 }
 PackageListInteractor::~PackageListInteractor() {}
 
 void PackageListInteractor::execute() {
-  this->aptHelper->aptUpdate();
-  this->packageListListener->onPackageListChanged(this->aptHelper->aptList());
+  QList<PackageDTO*> packageList;
+
+  packageList = this->aptHelper->aptList();
+
+  this->viewController->onPackageListReady(&packageList);
 }
