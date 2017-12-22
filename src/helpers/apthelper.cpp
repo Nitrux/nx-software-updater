@@ -10,17 +10,16 @@ using namespace std;
 
 AptHelper::AptHelper() {
   this->shellHelper = new ShellHelper();
+
+  this->shellHelper->runCommand("mkdir -p /root/.nx-software-updater");
 }
 AptHelper::~AptHelper() {}
 
 QList<PackageDTO*> AptHelper::aptList() {
   QList<PackageDTO*> packageList;
   string line,
-      upgradablePackagesListPath =
-          "/home/anupam/.nx-software-updater/upgradable",
-      cmd = "rm -r " + upgradablePackagesListPath + " && touch " +
-            upgradablePackagesListPath + " && apt-get --just-print upgrade > " +
-            upgradablePackagesListPath;
+      upgradablePackagesListPath = "/root/.nx-software-updater/upgradable",
+      cmd = "apt-get --just-print upgrade > " + upgradablePackagesListPath;
   /**
     * Read List of Upgradable packages from apt-get and store in temporary file
     */
@@ -32,15 +31,15 @@ QList<PackageDTO*> AptHelper::aptList() {
 void AptHelper::aptUpdate() {
   string cmd =
       "apt-get update --assume-yes > "
-      "/home/anupam/.nx-software-updater/update-output";
+      "/root/.nx-software-updater/update-output";
 
   this->shellHelper->runCommand(cmd);
 }
 
 void AptHelper::aptUpgrade() {
   string cmd =
-      "apt-get updgrade --assume-no > "
-      "/home/anupam/.nx-software-updater/upgrade-output";
+      "apt-get upgrade --assume-yes > "
+      "~/.nx-software-updater/upgrade-output";
 
   this->shellHelper->runCommand(cmd);
 }

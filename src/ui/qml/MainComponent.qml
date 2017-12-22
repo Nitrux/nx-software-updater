@@ -28,6 +28,10 @@ ApplicationWindow {
             packageListComponent.fetchingListComponent.showUpdatingPackages()
             SoftwareUpdater.UpdateViewController.doUpdate();
         }
+        buttonsContainerComponent.btnUpgrade.onClicked: {
+            packageListComponent.fetchingListComponent.showUpgradingPackages()
+            SoftwareUpdater.UpgradeViewController.doUpgrade();
+        }
     }
 
     Connections {
@@ -46,6 +50,19 @@ ApplicationWindow {
 
         onUpdateComplete: {
             console.log('>>>> Update Complete....');
+
+            mainComponent.packageListComponent.fetchingListComponent.showFetchingPackages()
+            SoftwareUpdater.PackageListViewController.fetchPackageList();
+        }
+    }
+
+    Connections {
+        target: SoftwareUpdater.UpgradeViewController
+
+        onUpgradeComplete: {
+            console.log('>>>> Upgrade Complete....');
+
+            mainComponent.packageListComponent.packageModel = "";
 
             mainComponent.packageListComponent.fetchingListComponent.showFetchingPackages()
             SoftwareUpdater.PackageListViewController.fetchPackageList();

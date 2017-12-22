@@ -4,6 +4,7 @@
 #include "ui/remindlaterviewcontroller.h"
 #include "ui/packagelistviewcontroller.h"
 #include "ui/updateviewcontroller.h"
+#include "ui/upgradeviewcontroller.h"
 #include "helpers/apthelper.h"
 
 AptHelper* aptHelper = nullptr;
@@ -11,6 +12,7 @@ AptHelper* aptHelper = nullptr;
 RemindLaterViewController* remindlaterviewcontroller = nullptr;
 PackageListViewController* packagelistviewcontroller = nullptr;
 UpdateViewController* updateviewcontroller = nullptr;
+UpgradeViewController* upgradeviewcontroller = nullptr;
 
 static QObject* remindlaterviewcontroller_singleton_provider(
     QQmlEngine* engine,
@@ -51,6 +53,19 @@ static QObject* updateviewcontroller_singleton_provider(
   return updateviewcontroller;
 }
 
+static QObject* upgradeviewcontroller_singleton_provider(
+    QQmlEngine* engine,
+    QJSEngine* scriptEngine) {
+  Q_UNUSED(engine)
+  Q_UNUSED(scriptEngine)
+
+  if (upgradeviewcontroller == nullptr) {
+    upgradeviewcontroller = new UpgradeViewController(aptHelper);
+  }
+
+  return upgradeviewcontroller;
+}
+
 int main(int argc, char* argv[]) {
   const char* uri = "org.nxos.softwareupdater";
 
@@ -73,6 +88,10 @@ int main(int argc, char* argv[]) {
   qmlRegisterSingletonType<UpdateViewController>(
       uri, 1, 0, "UpdateViewController",
       updateviewcontroller_singleton_provider);
+
+  qmlRegisterSingletonType<UpgradeViewController>(
+      uri, 1, 0, "UpgradeViewController",
+      upgradeviewcontroller_singleton_provider);
   /*    END INIT View Controllers   */
 
   QCoreApplication::addLibraryPath("./");
