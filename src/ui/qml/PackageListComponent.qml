@@ -12,9 +12,11 @@ PackageListComponentForm {
         onPackageListChanged: {
             console.log('>>>> QML packageListChanged....')
 
-            for (var i = 0; i<packageList.length; i++) {
-                console.log(JSON.stringify(packageList[i]));
-            }
+            packageModel = packageList
+
+//            for (var i = 0; i<packageList.length; i++) {
+//                console.log(JSON.stringify(packageList[i]));
+//            }
         }
     }
 }

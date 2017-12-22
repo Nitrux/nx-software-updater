@@ -8,6 +8,8 @@ Rectangle {
     height: 250
     color: '#ffffff'
 
+    property alias packageModel: packageListview.model
+
     ScrollView {
         id: scrollView
         anchors.fill: parent
@@ -17,74 +19,14 @@ Rectangle {
         anchors.bottomMargin: 20
 
         ListView {
+            id: packageListview
             anchors.top: parent.top
             anchors.topMargin: 0
             anchors.left: parent.left
             anchors.leftMargin: 0
-            model: ListModel {
-                ListElement {
-                    name: "One"
-                }
-                ListElement {
-                    name: "Two"
-                }
-                ListElement {
-                    name: "Three"
-                }
-                ListElement {
-                    name: "Four"
-                }
-                ListElement {
-                    name: "Five"
-                }
-                ListElement {
-                    name: "One"
-                }
-                ListElement {
-                    name: "Two"
-                }
-                ListElement {
-                    name: "Three"
-                }
-                ListElement {
-                    name: "Four"
-                }
-                ListElement {
-                    name: "Five"
-                }
-                ListElement {
-                    name: "One"
-                }
-                ListElement {
-                    name: "Two"
-                }
-                ListElement {
-                    name: "Three"
-                }
-                ListElement {
-                    name: "Four"
-                }
-                ListElement {
-                    name: "Five"
-                }
-                ListElement {
-                    name: "One"
-                }
-                ListElement {
-                    name: "Two"
-                }
-                ListElement {
-                    name: "Three"
-                }
-                ListElement {
-                    name: "Four"
-                }
-                ListElement {
-                    name: "Five"
-                }
-            }
+            model: packageModel
             delegate: Text {
-                text: name
+                text: modelData.packageName
             }
         }
     }
