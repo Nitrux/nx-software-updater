@@ -7,6 +7,7 @@ Item {
     id: rectangle
     width: 600
     height: 100
+    property alias button3: button3
     property alias button: button
 
     Row {
