@@ -5,6 +5,7 @@
 #include <QList>
 #include <QObject>
 #include <string>
+#include <functional>
 
 #include "../dto/packagedto.h"
 #include "../listeners/packagelistlistener.h"
@@ -19,9 +20,9 @@ class AptHelper : public QObject {
   AptHelper(QObject* parent = nullptr);
   virtual ~AptHelper();
 
-  QList<PackageDTO*> aptList();
-  void aptUpdate();
-  void aptUpgrade();
+  void aptList(function<void()> lambda);
+  void aptUpdate(function<void()> lambda);
+  void aptUpgrade(function<void()> lambda);
 
  public slots:
   void onRunAptList();

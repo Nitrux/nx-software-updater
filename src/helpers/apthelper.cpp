@@ -3,6 +3,7 @@
 #include <QStandardPaths>
 #include <string>
 #include <regex>
+#include <functional>
 
 #include "apthelper.h"
 #include "../dto/packagedto.h"
@@ -17,11 +18,13 @@ AptHelper::AptHelper(QObject* parent) : QObject(parent) {
       "/nx-software-updater/";
   this->shellHelper = new ShellHelper();
 
-  this->shellHelper->runCommand("mkdir -p " + this->storageBasePath);
+  function<void()> lambda = [=]() {};
+
+  this->shellHelper->runCommand("mkdir -p " + this->storageBasePath, lambda);
 }
 AptHelper::~AptHelper() {}
 
-QList<PackageDTO*> AptHelper::aptList() {
+void AptHelper::aptList(function<void()> lambda) {
   QList<PackageDTO*> packageList;
   string line,
       upgradablePackagesListPath = this->storageBasePath + "upgradable",
@@ -31,32 +34,23 @@ QList<PackageDTO*> AptHelper::aptList() {
   /**
     * Read List of Upgradable packages from apt-get and store in temporary file
     */
-  this->shellHelper->runCommand(cmd);
-
-  qDebug() << ">>>> Updated";
-
-  qDebug()
-      << ">>>> Package List Fetched... Calling listener to parse pacage list";
-
-  packageList = this->parsePackageListFile(upgradablePackagesListPath);
-
-  return packageList;
+  this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpdate() {
+void AptHelper::aptUpdate(function<void()> lambda) {
   string cmd = "apt-get update --assume-yes > " + this->storageBasePath +
                "update-output";
 
-  this->shellHelper->runCommand(cmd);
+  this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpgrade() {
+void AptHelper::aptUpgrade(function<void()> lambda) {
   string cmd =
       "PATH=\"$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/"
       "bin\" apt-get upgrade --assume-yes > " +
       this->storageBasePath + "upgrade-output";
 
-  this->shellHelper->runCommand(cmd);
+  this->shellHelper->runCommand(cmd, lambda);
 }
 
 QList<PackageDTO*> AptHelper::parsePackageListFile(string path) {
@@ -95,18 +89,25 @@ QList<PackageDTO*> AptHelper::parsePackageListFile(string path) {
 }
 
 void AptHelper::onRunAptList() {
-  QList<PackageDTO*> packageList;
+  string upgradablePackagesListPath = this->storageBasePath + "upgradable";
+  auto that = this;
 
-  packageList = this->aptList();
-  emit onAptListComplete(packageList);
+  function<void()> lambda = [=]() {
+    QList<PackageDTO*> packageList;
+    packageList = that->parsePackageListFile(upgradablePackagesListPath);
+    emit onAptListComplete(packageList);
+  };
+
+  this->aptList(lambda);
 }
 
 void AptHelper::onRunAptUpdate() {
-  this->aptUpdate();
-  emit onAptUpdateComplete();
+  function<void()> lambda = [=]() { emit onAptUpdateComplete(); };
+
+  this->aptUpdate(lambda);
 }
 
 void AptHelper::onRunAptUpgrade() {
-  this->aptUpgrade();
-  emit onAptUpgradeComplete();
+  function<void()> lambda = [=]() { emit onAptUpgradeComplete(); };
+  this->aptUpgrade(lambda);
 }

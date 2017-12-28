@@ -1,5 +1,6 @@
 #include <QObject>
 #include <QDebug>
+#include <time.h>
 #include <kauth.h>
 
 #include "rootshellkauthhelper.h"

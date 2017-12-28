@@ -1,17 +1,20 @@
 #include <QDebug>
+#include <QObject>
+#include <QTimer>
 #include <string>
 #include <kauth.h>
 #include <KAuth>
+#include <functional>
 
 #include "shellhelper.h"
 
 using namespace std;
 using namespace KAuth;
 
-ShellHelper::ShellHelper() {}
+ShellHelper::ShellHelper(QObject* parent) : QObject(parent) {}
 ShellHelper::~ShellHelper() {}
 
-int ShellHelper::runCommand(string cmd) {
+void ShellHelper::runCommand(string cmd, function<void()> lambda) {
   Action rootShellAction(QLatin1String("org.nxos.softwareupdater.runcommand"));
   QVariantMap args;
   ExecuteJob* job;
@@ -21,22 +24,24 @@ int ShellHelper::runCommand(string cmd) {
   args["cmd"] = cmd.c_str();
   rootShellAction.setArguments(args);
   rootShellAction.setHelperId("org.nxos.softwareupdater");
+  rootShellAction.setTimeout(1800000);
   job = rootShellAction.execute();
 
-  bool execSuccess = job->exec();
+  connect(job, &ExecuteJob::result, this, [=](KJob* resultJob) {
+    ExecuteJob* job = (ExecuteJob*)resultJob;
+    bool execSuccess = job->exec();
 
-  qDebug() << "#### job status : " << job->errorString() << ", "
-           << job->errorText();
+    qDebug() << "#### job status : " << job->errorString() << ", "
+             << job->errorText();
 
-  if (execSuccess) {
-    qDebug() << ">>>> Root Shell Command Success...";
-  } else {
-    qDebug() << "#### Root Shell Command ERROR!!!!";
-  }
+    if (execSuccess) {
+      qDebug() << ">>>> Root Shell Command Success...";
+    } else {
+      qDebug() << "#### Root Shell Command ERROR!!!!";
+    }
 
-  return 0;
-}
+    lambda();
+  });
 
-int ShellHelper::runCommandWithSudo(string cmd) {
-  return 0;
+  job->start();
 }

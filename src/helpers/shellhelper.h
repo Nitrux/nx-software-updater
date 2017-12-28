@@ -1,20 +1,22 @@
 #ifndef HELPERS_SHELLHELPER_H
 #define HELPERS_SHELLHELPER_H
 
+#include <QObject>
+#include <functional>
 #include <string>
 
 #include "../listeners/packagelistlistener.h"
 
 using namespace std;
 
-class ShellHelper {
+class ShellHelper : QObject {
+  Q_OBJECT
+
  public:
-  ShellHelper();
+  ShellHelper(QObject* parent = nullptr);
   virtual ~ShellHelper();
 
-  int runCommand(string cmd);
-  int runCommand(string cmd, PackageListListener* listener);
-  int runCommandWithSudo(string cmd);
+  void runCommand(string cmd, function<void()> lambda);
 };
 
 #endif
