@@ -11,6 +11,8 @@ ApplicationWindow {
     visible: true
     width: 600
     height: 350
+    minimumWidth: 600
+    minimumHeight: 350
     title: qsTr("NX Software Updater")
 
     MainComponentForm {
