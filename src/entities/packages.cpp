@@ -6,4 +6,7 @@ Packages::Packages(AptHelper* aptHelper) {
 }
 Packages::~Packages() {}
 
-QList<PackageDTO> Packages::fetchListOfPackages() {}
+QList<PackageDTO> Packages::fetchListOfPackages() {
+  QList<PackageDTO> list;
+  return list;
+}

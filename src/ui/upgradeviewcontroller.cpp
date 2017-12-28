@@ -10,12 +10,13 @@ UpgradeViewController::UpgradeViewController(AptHelper* aptHelper) {
 UpgradeViewController::~UpgradeViewController() {}
 
 void UpgradeViewController::doUpgrade() {
-  qDebug() << "Update clicked....";
+  qDebug() << "Upgrade clicked....";
 
-  UpgradeInteractor* updateInteractor =
+  UpgradeInteractor* upgradeInteractor =
       new UpgradeInteractor(this->aptHelper, this);
 
-  QtConcurrent::run([=]() { updateInteractor->execute(); });
+  QtConcurrent::run([=]() { upgradeInteractor->execute(); });
+  //  updateInteractor->execute();
 }
 
 void UpgradeViewController::onUpgradeComplete() {

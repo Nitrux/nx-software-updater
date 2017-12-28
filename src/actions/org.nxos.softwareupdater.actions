@@ -1,0 +1,8 @@
+[Domain]
+Name=Root access for nx-software-updater
+
+[org.nxos.softwareupdater.runcommand]
+Name=Run Shell Command as Root
+Description=The Software Updater is trying to run some privilaged shell commands to update and install packages
+Policy=auth_admin
+Persistence=session

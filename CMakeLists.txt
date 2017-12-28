@@ -3,17 +3,43 @@ cmake_minimum_required(VERSION 3.2)
 
 enable_testing()
 
+set(CMAKE_INSTALL_PREFIX /usr)
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
+find_package(ECM 0.0.11 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+
 # Find the Qt libraries for Qt Quick/QML
 find_package(Qt5Core CONFIG REQUIRED Qml Quick Gui)
 find_package(Qt5Quick)
 find_package(Qt5Qml)
 find_package(Qt5Gui)
+find_package(KF5 REQUIRED COMPONENTS Auth)
+
+include(KDEInstallDirs)
+
+# Add KAuth actions File
+kauth_install_actions(org.nxos.softwareupdater src/actions/org.nxos.softwareupdater.actions)
+
+add_executable(
+    ${PROJECT_NAME}_helper
+    src/helpers/rootshellkauthhelper.h
+    src/helpers/rootshellkauthhelper.cpp
+)
+target_link_libraries(
+    ${PROJECT_NAME}_helper
+    ${KDE5_KDECORE_LIBS}
+    Qt5::Core
+    KF5::Auth
+)
+install(TARGETS ${PROJECT_NAME}_helper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
+kauth_install_helper_files(${PROJECT_NAME}_helper org.nxos.softwareupdater root)
+
 
 # add the qml.qrc file
 qt5_add_resources (
@@ -108,6 +134,7 @@ target_link_libraries(
     ${PROJECT_NAME}
     Qt5::Qml
     Qt5::Quick
+    KF5::Auth
 )
 
-add_subdirectory(src/tests)
+#add_subdirectory(src/tests)

@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "../listeners/packagelistlistener.h"
+
 using namespace std;
 
 class ShellHelper {
@@ -11,6 +13,7 @@ class ShellHelper {
   virtual ~ShellHelper();
 
   int runCommand(string cmd);
+  int runCommand(string cmd, PackageListListener* listener);
   int runCommandWithSudo(string cmd);
 };
 

@@ -21,6 +21,8 @@ void PackageListViewController::fetchPackageList() {
       new PackageListInteractor(this->aptHelper, this);
 
   QtConcurrent::run([=]() { packageListInteractor->execute(); });
+  //  packageListInteractor->execute();
+  qDebug() << "Executed Fetching Package List....";
 }
 
 void PackageListViewController::onPackageListReady(

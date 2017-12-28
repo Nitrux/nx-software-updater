@@ -6,6 +6,8 @@
 #include "interactor.h"
 
 class UpgradeInteractor : public Interactor {
+  Q_OBJECT
+
  private:
   AptHelper* aptHelper;
   UpgradeListener* listener;
@@ -15,6 +17,12 @@ class UpgradeInteractor : public Interactor {
   virtual ~UpgradeInteractor();
 
   void execute();
+
+ public slots:
+  void onAptUpgradeComplete();
+
+ signals:
+  void runAptUpgrade();
 };
 
 #endif

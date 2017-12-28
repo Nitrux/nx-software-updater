@@ -7,6 +7,8 @@
 #include "../listeners/packagelistlistener.h"
 
 class PackageListInteractor : public Interactor {
+  Q_OBJECT
+
  private:
   AptHelper* aptHelper;
   PackageListListener* listener;
@@ -17,6 +19,12 @@ class PackageListInteractor : public Interactor {
   virtual ~PackageListInteractor();
 
   void execute();
+
+ public slots:
+  void onAptListComplete(QList<PackageDTO*> packageList);
+
+ signals:
+  void runAptList();
 };
 
 #endif

@@ -16,6 +16,7 @@ void UpdateViewController::doUpdate() {
       new UpdateInteractor(this->aptHelper, this);
 
   QtConcurrent::run([=]() { updateInteractor->execute(); });
+  //  updateInteractor->execute();
 }
 
 void UpdateViewController::onUpdateComplete() {
