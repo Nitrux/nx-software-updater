@@ -19,3 +19,7 @@ nx-software-updater
 qrc_qml.cpp
 qml.qrc.depends
 entities_tests
+nx-software-updater_helper
+org.nxos.softwareupdater.conf
+org.nxos.softwareupdater.policy
+org.nxos.softwareupdater.service
