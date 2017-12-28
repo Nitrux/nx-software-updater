@@ -139,4 +139,7 @@ target_link_libraries(
     KF5::Auth
 )
 
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(FILES "org.nxos.softwareupdater.desktop" DESTINATION share/applications)
+
 #add_subdirectory(src/tests)
