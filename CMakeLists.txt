@@ -15,10 +15,11 @@ find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 # Find the Qt libraries for Qt Quick/QML
-find_package(Qt5Core CONFIG REQUIRED Qml Quick Gui)
+find_package(Qt5Core CONFIG REQUIRED Qml Quick Gui Concurrent)
 find_package(Qt5Quick)
 find_package(Qt5Qml)
 find_package(Qt5Gui)
+find_package(Qt5Concurrent)
 find_package(KF5 REQUIRED COMPONENTS Auth)
 
 include(KDEInstallDirs)
@@ -134,6 +135,7 @@ target_link_libraries(
     ${PROJECT_NAME}
     Qt5::Qml
     Qt5::Quick
+    Qt5::Concurrent
     KF5::Auth
 )
 
