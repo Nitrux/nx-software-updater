@@ -5,8 +5,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Rectangle {
     id: container
-    width: 600
-    height: 350
+    anchors.fill: parent
     color: '#eeeeee'
 
     property alias packageListComponent: packageListComponent
@@ -21,14 +20,18 @@ Rectangle {
         anchors.leftMargin: 20
         anchors.right: parent.right
         anchors.rightMargin: 20
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 70
     }
 
     ButtonsContainerComponent {
         id: buttonsContainerComponent
 
-        anchors.top: packageListComponent.bottom
-        anchors.topMargin: 0
+        anchors.left: parent.left
+        anchors.leftMargin: 20
         anchors.right: parent.right
         anchors.rightMargin: 20
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
     }
 }

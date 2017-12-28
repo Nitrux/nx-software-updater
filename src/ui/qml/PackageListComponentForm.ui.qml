@@ -5,11 +5,11 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 Item {
-    width: 600
-    height: 260
+    anchors.fill: parent
 
     property alias packageModel: packageListview.model
     property alias fetchingListComponent: fetchingListComponent
+    property alias labelUpdated: labelUpdated
 
     FetchingListComponent {
         id: fetchingListComponent
@@ -22,6 +22,7 @@ Item {
     }
 
     Rectangle {
+        id: rectangle
         color: '#ffffff'
 
         anchors.top: fetchingListComponent.bottom
@@ -49,6 +50,18 @@ Item {
                     packageName: modelData.packageName
                 }
             }
+        }
+
+        Label {
+            id: labelUpdated
+            text: qsTr("Everything is up-to-date")
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.italic: true
+            font.pointSize: 10
+            anchors.top: parent.top
+            anchors.topMargin: 20
+            color: '#999999'
+            visible: false
         }
     }
 }

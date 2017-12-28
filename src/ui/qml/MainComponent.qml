@@ -42,6 +42,14 @@ ApplicationWindow {
 
             mainComponent.packageListComponent.fetchingListComponent.showPackageListText()
             mainComponent.packageListComponent.packageModel = packageList
+
+            if(packageList.length > 0) {
+                mainComponent.packageListComponent.labelUpdated.visible = false
+                mainComponent.buttonsContainerComponent.btnUpgrade.visible = true
+            } else {
+                mainComponent.packageListComponent.labelUpdated.visible = true
+                mainComponent.buttonsContainerComponent.btnUpgrade.visible = false
+            }
         }
     }
 

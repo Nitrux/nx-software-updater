@@ -6,7 +6,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 Item {
     id: rectangle
     width: 600
-    height: 100
+    height: 50
+
     property alias btnUpdate: btnUpdate
     property alias btnUpgrade: btnUpgrade
     property alias btnRemindLater: btnRemindLater
@@ -14,24 +15,23 @@ Item {
 
     Row {
         id: row
-        height: 100
         spacing: 10
-        anchors.right: parent.right
+        anchors.fill: parent
         anchors.rightMargin: 20
-        anchors.left: parent.left
         anchors.leftMargin: 20
         layoutDirection: Qt.RightToLeft
 
         PlasmaComponents.Button {
             id: btnUpgrade
 
-            text: qsTr("Upgrade Now")
+            text: qsTr("Install")
             anchors.verticalCenter: parent.verticalCenter
+            visible: false
         }
 
         PlasmaComponents.Button {
             id: btnUpdate
-            text: qsTr("Update")
+            text: qsTr("Update List")
             anchors.verticalCenter: parent.verticalCenter
         }
 
