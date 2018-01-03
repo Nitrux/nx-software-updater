@@ -1,5 +1,5 @@
-project(nx-software-updater)
 cmake_minimum_required(VERSION 3.2)
+project(nx-software-updater VERSION 0.2)
 
 enable_testing()
 
