@@ -94,6 +94,15 @@ set (
 
     src/entities/superuser.h
     src/entities/superuser.cpp
+
+    src/entities/packagemanager.cpp
+    src/entities/packagemanager.h
+
+    src/entities/apt.cpp
+    src/entities/apt.h
+
+    src/entities/pacman.cpp
+    src/entities/pacman.h
     # END Entities
 
     # START View Controllers

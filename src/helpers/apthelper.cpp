@@ -18,13 +18,13 @@ AptHelper::AptHelper(QObject* parent) : QObject(parent) {
       "/nx-software-updater/";
   this->shellHelper = new ShellHelper();
 
-  function<void()> lambda = [=]() {};
+  function<void(int)> lambda = [=](int returnVal) {};
 
   this->shellHelper->runCommand("mkdir -p " + this->storageBasePath, lambda);
 }
 AptHelper::~AptHelper() {}
 
-void AptHelper::aptList(function<void()> lambda) {
+void AptHelper::aptList(function<void(int)> lambda) {
   QList<PackageDTO*> packageList;
   string line,
       upgradablePackagesListPath = this->storageBasePath + "upgradable",
@@ -37,18 +37,16 @@ void AptHelper::aptList(function<void()> lambda) {
   this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpdate(function<void()> lambda) {
+void AptHelper::aptUpdate(function<void(int)> lambda) {
   string cmd = "apt-get update --assume-yes > " + this->storageBasePath +
                "update-output";
 
   this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpgrade(function<void()> lambda) {
-  string cmd =
-      "PATH=\"$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/"
-      "bin\" apt-get upgrade --assume-yes > " +
-      this->storageBasePath + "upgrade-output";
+void AptHelper::aptUpgrade(function<void(int)> lambda) {
+  string cmd = "apt-get upgrade --assume-yes > " + this->storageBasePath +
+               "upgrade-output";
 
   this->shellHelper->runCommand(cmd, lambda);
 }
@@ -92,7 +90,7 @@ void AptHelper::onRunAptList() {
   string upgradablePackagesListPath = this->storageBasePath + "upgradable";
   auto that = this;
 
-  function<void()> lambda = [=]() {
+  function<void(int)> lambda = [=](int returnVal) {
     QList<PackageDTO*> packageList;
     packageList = that->parsePackageListFile(upgradablePackagesListPath);
     emit onAptListComplete(packageList);
@@ -102,12 +100,16 @@ void AptHelper::onRunAptList() {
 }
 
 void AptHelper::onRunAptUpdate() {
-  function<void()> lambda = [=]() { emit onAptUpdateComplete(); };
+  function<void(int)> lambda = [=](int returnVal) {
+    emit onAptUpdateComplete();
+  };
 
   this->aptUpdate(lambda);
 }
 
 void AptHelper::onRunAptUpgrade() {
-  function<void()> lambda = [=]() { emit onAptUpgradeComplete(); };
+  function<void(int)> lambda = [=](int returnVal) {
+    emit onAptUpgradeComplete();
+  };
   this->aptUpgrade(lambda);
 }

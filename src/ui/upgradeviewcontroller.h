@@ -2,17 +2,17 @@
 #define UI_UPGRADEVIEWCONTROLLER_H
 
 #include "viewcontroller.h"
-#include "../helpers/apthelper.h"
 #include "../listeners/upgradelistener.h"
+#include "../entities/packagemanager.h"
 
 class UpgradeViewController : public ViewController, UpgradeListener {
   Q_OBJECT
 
  private:
-  AptHelper* aptHelper;
+  PackageManager* packageManager;
 
  public:
-  UpgradeViewController(AptHelper* aptHelper);
+  UpgradeViewController(PackageManager* packageManager);
   virtual ~UpgradeViewController();
 
  protected:

@@ -3,9 +3,10 @@
 
 #include "upgradeviewcontroller.h"
 #include "../interactors/upgradeinteractor.h"
+#include "../entities/packagemanager.h"
 
-UpgradeViewController::UpgradeViewController(AptHelper* aptHelper) {
-  this->aptHelper = aptHelper;
+UpgradeViewController::UpgradeViewController(PackageManager* packageManager) {
+  this->packageManager = packageManager;
 }
 UpgradeViewController::~UpgradeViewController() {}
 
@@ -13,7 +14,7 @@ void UpgradeViewController::doUpgrade() {
   qDebug() << "Upgrade clicked....";
 
   UpgradeInteractor* upgradeInteractor =
-      new UpgradeInteractor(this->aptHelper, this);
+      new UpgradeInteractor(this->packageManager, this);
 
   QtConcurrent::run([=]() { upgradeInteractor->execute(); });
   //  updateInteractor->execute();

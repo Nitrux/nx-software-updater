@@ -1,13 +1,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QDebug>
 
 #include "ui/remindlaterviewcontroller.h"
 #include "ui/packagelistviewcontroller.h"
 #include "ui/updateviewcontroller.h"
 #include "ui/upgradeviewcontroller.h"
-#include "helpers/apthelper.h"
+#include "entities/packagemanager.h"
+#include "entities/apt.h"
 
-AptHelper* aptHelper = nullptr;
+PackageManager* packageManager = nullptr;
 
 RemindLaterViewController* remindlaterviewcontroller = nullptr;
 PackageListViewController* packagelistviewcontroller = nullptr;
@@ -34,7 +36,7 @@ static QObject* packagelistviewcontroller_singleton_provider(
   Q_UNUSED(scriptEngine)
 
   if (packagelistviewcontroller == nullptr) {
-    packagelistviewcontroller = new PackageListViewController(aptHelper);
+    packagelistviewcontroller = new PackageListViewController(packageManager);
   }
 
   return packagelistviewcontroller;
@@ -47,7 +49,7 @@ static QObject* updateviewcontroller_singleton_provider(
   Q_UNUSED(scriptEngine)
 
   if (updateviewcontroller == nullptr) {
-    updateviewcontroller = new UpdateViewController(aptHelper);
+    updateviewcontroller = new UpdateViewController(packageManager);
   }
 
   return updateviewcontroller;
@@ -60,7 +62,7 @@ static QObject* upgradeviewcontroller_singleton_provider(
   Q_UNUSED(scriptEngine)
 
   if (upgradeviewcontroller == nullptr) {
-    upgradeviewcontroller = new UpgradeViewController(aptHelper);
+    upgradeviewcontroller = new UpgradeViewController(packageManager);
   }
 
   return upgradeviewcontroller;
@@ -72,8 +74,15 @@ int main(int argc, char* argv[]) {
   QGuiApplication app(argc, argv);
   QQmlApplicationEngine engine;
 
+  qDebug() << ">>>> PackageManagerType : "
+           << PackageManager::getPackageManagerType();
+
   /*    INIT Entities and Helpers   */
-  aptHelper = new AptHelper();
+  switch (PackageManager::getPackageManagerType()) {
+    case PackageManagerType::APT:
+      packageManager = new Apt();
+      break;
+  }
   /*    END INIT Entities and Helpers   */
 
   /*    INIT View Controllers   */

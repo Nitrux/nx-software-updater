@@ -16,7 +16,7 @@ class ShellHelper : QObject {
   ShellHelper(QObject* parent = nullptr);
   virtual ~ShellHelper();
 
-  void runCommand(string cmd, function<void()> lambda);
+  void runCommand(string cmd, function<void(int)> lambda);
 };
 
 #endif

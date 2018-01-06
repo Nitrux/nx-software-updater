@@ -5,8 +5,8 @@
 #include <QVariant>
 #include <QVariantList>
 
+#include "../entities/packagemanager.h"
 #include "../dto/packagedto.h"
-#include "../helpers/apthelper.h"
 #include "../listeners/packagelistlistener.h"
 #include "viewcontroller.h"
 
@@ -15,14 +15,14 @@ class PackageListViewController : public ViewController,
   Q_OBJECT
 
  public:
-  PackageListViewController(AptHelper* aptHelper);
+  PackageListViewController(PackageManager* packageManager);
   virtual ~PackageListViewController();
 
  protected:
-  virtual void onPackageListReady(QList<PackageDTO*>* packageList);
+  virtual void onPackageListReady(QList<PackageDTO*> packageList);
 
  private:
-  AptHelper* aptHelper;
+  PackageManager* packageManager;
 
  public slots:
   void fetchPackageList();

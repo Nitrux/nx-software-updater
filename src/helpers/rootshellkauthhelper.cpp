@@ -13,9 +13,9 @@ RootShellKauthHelper::~RootShellKauthHelper() {}
 ActionReply RootShellKauthHelper::runcommand(QVariantMap args) {
   ActionReply reply;
 
-  int returnVal = system(args["cmd"].toString().toStdString().c_str());
+  int status = system(args["cmd"].toString().toStdString().c_str());
 
-  reply.addData("returnVal", returnVal);
+  reply.addData("returnVal", WEXITSTATUS(status));
 
   return reply;
 }
