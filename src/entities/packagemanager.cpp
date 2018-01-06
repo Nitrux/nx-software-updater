@@ -22,7 +22,13 @@ PackageManagerType PackageManager::getPackageManagerType() {
     if (WEXITSTATUS(status) == 0) {
       return PackageManagerType::APT;
     } else {
-      return PackageManagerType::OTHER;
+      status = system("nxi --version > /dev/null");
+
+      if (WEXITSTATUS(status) == 0) {
+        return PackageManagerType::NXI;
+      } else {
+        return PackageManagerType::OTHER;
+      }
     }
   }
 }

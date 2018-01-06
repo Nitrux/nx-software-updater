@@ -8,6 +8,7 @@
 #include "ui/upgradeviewcontroller.h"
 #include "entities/packagemanager.h"
 #include "entities/apt.h"
+#include "entities/nxi.h"
 
 PackageManager* packageManager = nullptr;
 
@@ -80,7 +81,13 @@ int main(int argc, char* argv[]) {
   /*    INIT Entities and Helpers   */
   switch (PackageManager::getPackageManagerType()) {
     case PackageManagerType::APT:
+      qDebug() << "PackageManager : APT";
       packageManager = new Apt();
+      break;
+
+    case PackageManagerType::NXI:
+      qDebug() << "PackageManager : NXI";
+      packageManager = new Nxi();
       break;
   }
   /*    END INIT Entities and Helpers   */

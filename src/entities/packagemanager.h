@@ -12,7 +12,7 @@
 
 using namespace std;
 
-enum PackageManagerType { APT, PACMAN, OTHER };
+enum PackageManagerType { APT, PACMAN, NXI, OTHER };
 
 class PackageManager : public QObject {
  public:

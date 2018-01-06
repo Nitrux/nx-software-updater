@@ -81,6 +81,9 @@ set (
     src/helpers/apthelper.h
     src/helpers/apthelper.cpp
 
+    src/helpers/nxihelper.h
+    src/helpers/nxihelper.cpp
+
     src/helpers/shellhelper.h
     src/helpers/shellhelper.cpp
     # END Helpers
@@ -101,8 +104,8 @@ set (
     src/entities/apt.cpp
     src/entities/apt.h
 
-    src/entities/pacman.cpp
-    src/entities/pacman.h
+    src/entities/nxi.cpp
+    src/entities/nxi.h
     # END Entities
 
     # START View Controllers
