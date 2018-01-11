@@ -22,7 +22,7 @@ ApplicationWindow {
         }
 
         buttonsContainerComponent.btnQuit.onClicked: {
-            Qt.quit();
+            SoftwareUpdater.QuitViewController.doQuit();
         }
         buttonsContainerComponent.btnUpdate.onClicked: {
             mainComponent.packageListComponent.packageModel = "";

@@ -6,6 +6,7 @@
 #include "ui/packagelistviewcontroller.h"
 #include "ui/updateviewcontroller.h"
 #include "ui/upgradeviewcontroller.h"
+#include "ui/quitviewcontroller.h"
 #include "entities/packagemanager.h"
 #include "entities/apt.h"
 #include "entities/nxi.h"
@@ -16,6 +17,7 @@ RemindLaterViewController* remindlaterviewcontroller = nullptr;
 PackageListViewController* packagelistviewcontroller = nullptr;
 UpdateViewController* updateviewcontroller = nullptr;
 UpgradeViewController* upgradeviewcontroller = nullptr;
+QuitViewController* quitviewcontroller = nullptr;
 
 static QObject* remindlaterviewcontroller_singleton_provider(
     QQmlEngine* engine,
@@ -69,6 +71,18 @@ static QObject* upgradeviewcontroller_singleton_provider(
   return upgradeviewcontroller;
 }
 
+static QObject* quitviewcontroller_singleton_provider(QQmlEngine* engine,
+                                                      QJSEngine* scriptEngine) {
+  Q_UNUSED(engine)
+  Q_UNUSED(scriptEngine)
+
+  if (quitviewcontroller == nullptr) {
+    quitviewcontroller = new QuitViewController();
+  }
+
+  return quitviewcontroller;
+}
+
 int main(int argc, char* argv[]) {
   const char* uri = "org.nxos.softwareupdater";
 
@@ -108,6 +122,9 @@ int main(int argc, char* argv[]) {
   qmlRegisterSingletonType<UpgradeViewController>(
       uri, 1, 0, "UpgradeViewController",
       upgradeviewcontroller_singleton_provider);
+
+  qmlRegisterSingletonType<QuitViewController>(
+      uri, 1, 0, "QuitViewController", quitviewcontroller_singleton_provider);
   /*    END INIT View Controllers   */
 
   QCoreApplication::addLibraryPath("./");

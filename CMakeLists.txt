@@ -75,6 +75,9 @@ set (
 
     src/interactors/upgradeinteractor.h
     src/interactors/upgradeinteractor.cpp
+
+    src/interactors/quitinteractor.h
+    src/interactors/quitinteractor.cpp
     # END Interactors
 
     # START Helpers
@@ -123,6 +126,9 @@ set (
 
     src/ui/upgradeviewcontroller.cpp
     src/ui/upgradeviewcontroller.h
+
+    src/ui/quitviewcontroller.h
+    src/ui/quitviewcontroller.cpp
     # END View Controllers
 
     # START Listeners
@@ -135,6 +141,10 @@ set (
     src/dto/packagedto.h
     src/dto/packagedto.cpp
     # END DTO
+
+    # START Others
+    src/actions/actionids.h
+    # END Others
 )
 
 add_executable (
