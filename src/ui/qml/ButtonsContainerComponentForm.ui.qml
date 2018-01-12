@@ -26,13 +26,14 @@ Item {
 
             text: qsTr("Install")
             anchors.verticalCenter: parent.verticalCenter
-            visible: false
+            enabled: false
         }
 
         PlasmaComponents.Button {
             id: btnUpdate
             text: qsTr("Update List")
             anchors.verticalCenter: parent.verticalCenter
+            enabled: false
         }
 
         PlasmaComponents.Button {
@@ -46,6 +47,7 @@ Item {
             id: btnQuit
             text: qsTr("Quit")
             anchors.verticalCenter: parent.verticalCenter
+            enabled: false
         }
     }
 }

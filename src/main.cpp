@@ -1,7 +1,8 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 
+#include "ui/mainviewcontroller.h"
 #include "ui/remindlaterviewcontroller.h"
 #include "ui/packagelistviewcontroller.h"
 #include "ui/updateviewcontroller.h"
@@ -13,11 +14,24 @@
 
 PackageManager* packageManager = nullptr;
 
+MainViewController* mainviewcontroller = nullptr;
 RemindLaterViewController* remindlaterviewcontroller = nullptr;
 PackageListViewController* packagelistviewcontroller = nullptr;
 UpdateViewController* updateviewcontroller = nullptr;
 UpgradeViewController* upgradeviewcontroller = nullptr;
 QuitViewController* quitviewcontroller = nullptr;
+
+static QObject* mainviewcontroller_singleton_provider(QQmlEngine* engine,
+                                                      QJSEngine* scriptEngine) {
+  Q_UNUSED(engine)
+  Q_UNUSED(scriptEngine)
+
+  if (mainviewcontroller == nullptr) {
+    mainviewcontroller = new MainViewController();
+  }
+
+  return mainviewcontroller;
+}
 
 static QObject* remindlaterviewcontroller_singleton_provider(
     QQmlEngine* engine,
@@ -86,7 +100,7 @@ static QObject* quitviewcontroller_singleton_provider(QQmlEngine* engine,
 int main(int argc, char* argv[]) {
   const char* uri = "org.nxos.softwareupdater";
 
-  QGuiApplication app(argc, argv);
+  QApplication app(argc, argv);
   QQmlApplicationEngine engine;
 
   qDebug() << ">>>> PackageManagerType : "
@@ -107,6 +121,9 @@ int main(int argc, char* argv[]) {
   /*    END INIT Entities and Helpers   */
 
   /*    INIT View Controllers   */
+  qmlRegisterSingletonType<MainViewController>(
+      uri, 1, 0, "MainViewController", mainviewcontroller_singleton_provider);
+
   qmlRegisterSingletonType<RemindLaterViewController>(
       uri, 1, 0, "RemindLaterViewController",
       remindlaterviewcontroller_singleton_provider);
@@ -130,7 +147,8 @@ int main(int argc, char* argv[]) {
   QCoreApplication::addLibraryPath("./");
   QCoreApplication::setOrganizationName("NXOS");
   QCoreApplication::setOrganizationDomain("nxos.org");
-  QCoreApplication::setApplicationName("nx-software-updater");
+  //  QCoreApplication::setApplicationName("nx-software-updater");
+  QCoreApplication::setApplicationName("NX Software Updater");
 
   engine.load(QUrl(QStringLiteral("qrc:/MainComponent.qml")));
 
