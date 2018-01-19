@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Icon=security-high
+Exec=kcmshell5 kcm_nx_software_updater
+
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-KDE-Library=nx_software_updater
+X-KDE-ParentApp=kcontrol
+X-KDE-System-Settings-Parent-Category=network
+X-KDE-Weight=80
+
+
+Name=NX Software Updater
+Comment=NX Software Updater - A Simple GUI Updater
+X-KDE-Keywords=updater, network, gui
+Categories=Qt;KDE;X-KDE-settings-system;

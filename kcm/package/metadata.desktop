@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Nomad Software Updater
+Comment=GUI Software Updater
+Encoding=UTF-8
+
+Icon=security-high
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-KDE-ServiceTypes=Plasma/Generic
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/MainComponent.qml
+
+X-KDE-PluginInfo-Name=org.nxos.softwareupdater
+X-KDE-PluginInfo-Category=network
+X-KDE-PluginInfo-Author=Anupam Basak
+X-KDE-PluginInfo-Email=anupam.basak27@gmail.com
+X-KDE-PluginInfo-Version=0.2
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-License=

@@ -1,3 +1,5 @@
+#include "softwareupdaterplugin.h"
+
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
@@ -97,11 +99,8 @@ static QObject* quitviewcontroller_singleton_provider(QQmlEngine* engine,
   return quitviewcontroller;
 }
 
-int main(int argc, char* argv[]) {
-  const char* uri = "org.nxos.softwareupdater";
-
-  QApplication app(argc, argv);
-  QQmlApplicationEngine engine;
+void SoftwareUpdaterPlugin::registerTypes(const char* uri) {
+  Q_ASSERT(uri == QLatin1String("org.nxos.softwareupdater"));
 
   qDebug() << ">>>> PackageManagerType : "
            << PackageManager::getPackageManagerType();
@@ -116,6 +115,10 @@ int main(int argc, char* argv[]) {
     case PackageManagerType::NXI:
       qDebug() << "PackageManager : NXI";
       packageManager = new Nxi();
+      break;
+
+    case PackageManagerType::PACMAN:
+    case PackageManagerType::OTHER:
       break;
   }
   /*    END INIT Entities and Helpers   */
@@ -143,14 +146,4 @@ int main(int argc, char* argv[]) {
   qmlRegisterSingletonType<QuitViewController>(
       uri, 1, 0, "QuitViewController", quitviewcontroller_singleton_provider);
   /*    END INIT View Controllers   */
-
-  QCoreApplication::addLibraryPath("./");
-  QCoreApplication::setOrganizationName("NXOS");
-  QCoreApplication::setOrganizationDomain("nxos.org");
-  //  QCoreApplication::setApplicationName("nx-software-updater");
-  QCoreApplication::setApplicationName("NX Software Updater");
-
-  engine.load(QUrl(QStringLiteral("qrc:/MainComponent.qml")));
-
-  return app.exec();
 }
