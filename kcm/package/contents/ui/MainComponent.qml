@@ -7,14 +7,14 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.nxos.softwareupdater 1.0 as SoftwareUpdater
 
-ApplicationWindow {
+Item {
     id: applicationWindow
     visible: true
-    width: 600
-    height: 350
-    minimumWidth: 600
-    minimumHeight: 350
-    title: qsTr("NX Software Updater")
+    implicitWidth: 600
+    implicitHeight: 350
+//    minimumWidth: 600
+//    minimumHeight: 350
+//    title: qsTr("NX Software Updater")
 
     MainComponentForm {
         id: mainComponent
@@ -64,10 +64,10 @@ ApplicationWindow {
         }
     }
 
-    onClosing: {
-        close.accepted = false;
-        minimizeDialog.visible = true;
-    }
+//    onClosing: {
+//        close.accepted = false;
+//        minimizeDialog.visible = true;
+//    }
 
     Connections {
         target: SoftwareUpdater.MainViewController

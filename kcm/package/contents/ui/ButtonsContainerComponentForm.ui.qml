@@ -31,7 +31,7 @@ Item {
 
         PlasmaComponents.Button {
             id: btnUpdate
-            text: qsTr("Update List")
+            text: qsTr("Check for Updates")
             anchors.verticalCenter: parent.verticalCenter
             enabled: false
         }
@@ -48,6 +48,7 @@ Item {
             text: qsTr("Quit")
             anchors.verticalCenter: parent.verticalCenter
             enabled: false
+            visible: false
         }
     }
 }

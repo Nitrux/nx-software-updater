@@ -1,6 +1,6 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Icon=security-high
+Icon=nx-software-updater
 Exec=kcmshell5 kcm_nx_software_updater
 
 Type=Service

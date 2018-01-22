@@ -1,5 +1,5 @@
 [Desktop Entry]
-Icon=security-high
+Icon=nx-software-updater
 Exec=kcmshell5 org_nxos_softwareupdater
 
 Type=Service
@@ -9,7 +9,7 @@ X-KDE-ParentApp=kcontrol
 X-KDE-System-Settings-Parent-Category=network
 X-KDE-Weight=80
 
-Name=Nomad Software Updater
-Comment=Nomad Software Updater - A Simple GUI Updater
+Name=Software Updater
+Comment=Software Updater
 X-KDE-Keywords=network, update, updater
 Categories=Qt;KDE;X-KDE-settings-looknfeel;

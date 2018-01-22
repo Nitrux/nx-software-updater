@@ -3,7 +3,7 @@ Name=Nomad Software Updater
 Comment=GUI Software Updater
 Encoding=UTF-8
 
-Icon=security-high
+Icon=nx-software-updater
 Type=Service
 X-KDE-ServiceTypes=KCModule
 X-KDE-ServiceTypes=Plasma/Generic

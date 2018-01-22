@@ -1,9 +1,11 @@
-#include "nxsoftwareupdaterkcm.h"
-
+#include <typeinfo>
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KAboutData>
+#include <QDebug>
+
+#include "nxsoftwareupdaterkcm.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(NxSoftwareUpdaterKCMFactory,
                            "org_nxos_softwareupdater.json",
