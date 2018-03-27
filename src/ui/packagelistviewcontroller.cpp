@@ -9,8 +9,9 @@
 #include "../helpers/apthelper.h"
 #include "../interactors/packagelistinteractor.h"
 
-PackageListViewController::PackageListViewController(AptHelper* aptHelper) {
-  this->aptHelper = aptHelper;
+PackageListViewController::PackageListViewController(
+    PackageManager* packageManager) {
+  this->packageManager = packageManager;
 }
 PackageListViewController::~PackageListViewController() {}
 
@@ -18,7 +19,7 @@ void PackageListViewController::fetchPackageList() {
   qDebug() << "Fetching Package List....";
 
   PackageListInteractor* packageListInteractor =
-      new PackageListInteractor(this->aptHelper, this);
+      new PackageListInteractor(this->packageManager, this);
 
   QtConcurrent::run([=]() { packageListInteractor->execute(); });
   //  packageListInteractor->execute();
@@ -26,10 +27,10 @@ void PackageListViewController::fetchPackageList() {
 }
 
 void PackageListViewController::onPackageListReady(
-    QList<PackageDTO*>* packageList) {
+    QList<PackageDTO*> packageList) {
   QVariantList qvPackageList;
 
-  for (PackageDTO* package : *packageList) {
+  for (PackageDTO* package : packageList) {
     QVariantMap packageData;
 
     packageData["packageName"] = package->getPackageName();

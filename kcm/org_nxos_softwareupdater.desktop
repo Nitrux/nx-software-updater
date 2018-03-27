@@ -1,0 +1,15 @@
+[Desktop Entry]
+Icon=nx-software-updater
+Exec=kcmshell5 org_nxos_softwareupdater
+
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-KDE-Library=org.nxos.softwareupdater
+X-KDE-ParentApp=kcontrol
+X-KDE-System-Settings-Parent-Category=network
+X-KDE-Weight=80
+
+Name=Software Updater
+Comment=Software Updater
+X-KDE-Keywords=network, update, updater
+Categories=Qt;KDE;X-KDE-settings-looknfeel;

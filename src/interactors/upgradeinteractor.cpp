@@ -1,25 +1,14 @@
 #include "upgradeinteractor.h"
-#include "../listeners/updatelistener.h"
+#include "../listeners/upgradelistener.h"
+#include "../entities/packagemanager.h"
 
-UpgradeInteractor::UpgradeInteractor(AptHelper* aptHelper,
+UpgradeInteractor::UpgradeInteractor(PackageManager* packageManager,
                                      UpgradeListener* listener) {
-  this->aptHelper = aptHelper;
+  this->packageManager = packageManager;
   this->listener = listener;
-
-  connect(this, SIGNAL(runAptUpgrade()), this->aptHelper,
-          SLOT(onRunAptUpgrade()));
-  connect(this->aptHelper, SIGNAL(onAptUpgradeComplete()), this,
-          SLOT(onAptUpgradeComplete()));
 }
 UpgradeInteractor::~UpgradeInteractor() {}
 
 void UpgradeInteractor::execute() {
-  //  this->aptHelper->aptUpgrade();
-  //  this->listener->onUpgradeComplete();
-
-  emit runAptUpgrade();
-}
-
-void UpgradeInteractor::onAptUpgradeComplete() {
-  this->listener->onUpgradeComplete();
+  this->packageManager->upgrade(this->listener);
 }

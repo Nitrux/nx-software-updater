@@ -1,0 +1,2 @@
+module org.nxos.softwareupdater
+plugin nx_software_updater_plugin

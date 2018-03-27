@@ -8,7 +8,7 @@
 class PackageListListener {
  public:
   virtual ~PackageListListener() {}
-  virtual void onPackageListReady(QList<PackageDTO*>* packageList) = 0;
+  virtual void onPackageListReady(QList<PackageDTO*> packageList) = 0;
 };
 
 #endif

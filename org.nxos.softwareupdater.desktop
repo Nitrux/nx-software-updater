@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=0.1-alpha
-Name=Software Updater
-Comment=GUI Updater application to manage package updates
-Exec=nx-software-updater
-Terminal=false
-Type=Application
-Categories=Utility;
