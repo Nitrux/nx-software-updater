@@ -1,3 +1,5 @@
+export TZ=Asia/Kolkata
+
 apt-get --yes update
 apt-get --yes install wget
 
