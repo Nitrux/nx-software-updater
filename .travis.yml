@@ -5,7 +5,7 @@ services:
 
 script:
  - docker pull ubuntu:bionic
- - docker --rm -v $(pwd)/:/build/ -w /build/ ubuntu:bionic /bin/bash travis-build.sh
+ - docker run --rm -v $(pwd)/:/build/ -w /build/ ubuntu:bionic /bin/bash travis-build.sh
 
 after_success:
   - ls ./
