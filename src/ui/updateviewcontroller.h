@@ -2,17 +2,17 @@
 #define UI_UPDATEVIEWCONTROLLER_H
 
 #include "viewcontroller.h"
-#include "../helpers/apthelper.h"
 #include "../listeners/updatelistener.h"
+#include "../entities/packagemanager.h"
 
 class UpdateViewController : public ViewController, UpdateListener {
   Q_OBJECT
 
  private:
-  AptHelper* aptHelper;
+  PackageManager* packageManager;
 
  public:
-  UpdateViewController(AptHelper* aptHelper);
+  UpdateViewController(PackageManager* packageManager);
   virtual ~UpdateViewController();
 
  protected:

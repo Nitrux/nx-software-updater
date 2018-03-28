@@ -1,28 +1,22 @@
 #ifndef INTERACTORS_UPDATEINTERACTOR_H
 #define INTERACTORS_UPDATEINTERACTOR_H
 
-#include "../helpers/apthelper.h"
-#include "../listeners/updatelistener.h"
 #include "interactor.h"
+#include "../listeners/updatelistener.h"
+#include "../entities/packagemanager.h"
 
 class UpdateInteractor : public Interactor {
   Q_OBJECT
 
  private:
-  AptHelper* aptHelper;
+  PackageManager* packageManager;
   UpdateListener* listener;
 
  public:
-  UpdateInteractor(AptHelper* aptHelper, UpdateListener* listener);
+  UpdateInteractor(PackageManager* packageManager, UpdateListener* listener);
   virtual ~UpdateInteractor();
 
   void execute();
-
- public slots:
-  void onAptUpdateComplete();
-
- signals:
-  void runAptUpdate();
 };
 
 #endif

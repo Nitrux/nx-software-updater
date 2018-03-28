@@ -20,9 +20,9 @@ class AptHelper : public QObject {
   AptHelper(QObject* parent = nullptr);
   virtual ~AptHelper();
 
-  void aptList(function<void()> lambda);
-  void aptUpdate(function<void()> lambda);
-  void aptUpgrade(function<void()> lambda);
+  void aptList(function<void(int)> lambda);
+  void aptUpdate(function<void(int)> lambda);
+  void aptUpgrade(function<void(int)> lambda);
 
  public slots:
   void onRunAptList();

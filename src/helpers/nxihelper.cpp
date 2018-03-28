@@ -5,13 +5,13 @@
 #include <regex>
 #include <functional>
 
-#include "apthelper.h"
+#include "nxihelper.h"
 #include "../dto/packagedto.h"
 #include "../listeners/packagelistlistener.h"
 
 using namespace std;
 
-AptHelper::AptHelper(QObject* parent) : QObject(parent) {
+NxiHelper::NxiHelper(QObject* parent) : QObject(parent) {
   this->storageBasePath =
       QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
           .toStdString() +
@@ -22,42 +22,42 @@ AptHelper::AptHelper(QObject* parent) : QObject(parent) {
 
   this->shellHelper->runCommand("mkdir -p " + this->storageBasePath, lambda);
 }
-AptHelper::~AptHelper() {}
+NxiHelper::~NxiHelper() {}
 
-void AptHelper::aptList(function<void(int)> lambda) {
+void NxiHelper::nxiList(function<void(int)> lambda) {
   QList<PackageDTO*> packageList;
   string line,
       upgradablePackagesListPath = this->storageBasePath + "upgradable",
-      cmd = "apt-get --just-print upgrade > " + upgradablePackagesListPath;
+      cmd = "nxi list --upgradable > " + upgradablePackagesListPath;
 
   qDebug() << ">>>> Updating list";
   /**
-    * Read List of Upgradable packages from apt-get and store in temporary file
+    * Read List of Upgradable packages from nxi-get and store in temporary file
     */
   this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpdate(function<void(int)> lambda) {
-  string cmd = "apt-get update --assume-yes > " + this->storageBasePath +
-               "update-output";
+void NxiHelper::nxiUpdate(function<void(int)> lambda) {
+  string cmd =
+      "nxi update --assume-yes > " + this->storageBasePath + "update-output";
 
   this->shellHelper->runCommand(cmd, lambda);
 }
 
-void AptHelper::aptUpgrade(function<void(int)> lambda) {
-  string cmd = "apt-get upgrade --assume-yes > " + this->storageBasePath +
-               "upgrade-output";
+void NxiHelper::nxiUpgrade(function<void(int)> lambda) {
+  string cmd =
+      "nxi upgrade --assume-yes > " + this->storageBasePath + "upgrade-output";
 
   this->shellHelper->runCommand(cmd, lambda);
 }
 
-QList<PackageDTO*> AptHelper::parsePackageListFile(string path) {
+QList<PackageDTO*> NxiHelper::parsePackageListFile(string path) {
   QList<PackageDTO*> packageList;
 
   QFile file(path.c_str());
   QTextStream fileInputStream(&file);
   regex packageRegex(
-      R"(Inst\s([\w\-\d\.~:\+]+)\s\[([\w\-\d\.~:\+]+)\]\s\(([\w\-\d\.~:\+]+)\)? )",
+      R"(([\w\-\d\.~:\+]+)\/[\w\-\d\.~:\+,]+\s([\w\-\d\.~:\+]+)\s[\w\-\d\.~:\+]+\s\[upgradable from: ([\w\-\d\.~:\+]+))",
       regex_constants::icase);
 
   qDebug() << "Parsing Package List....";
@@ -86,30 +86,30 @@ QList<PackageDTO*> AptHelper::parsePackageListFile(string path) {
   return packageList;
 }
 
-void AptHelper::onRunAptList() {
+void NxiHelper::onRunNxiList() {
   string upgradablePackagesListPath = this->storageBasePath + "upgradable";
   auto that = this;
 
   function<void(int)> lambda = [=](int returnVal) {
     QList<PackageDTO*> packageList;
     packageList = that->parsePackageListFile(upgradablePackagesListPath);
-    emit onAptListComplete(packageList);
+    emit onNxiListComplete(packageList);
   };
 
-  this->aptList(lambda);
+  this->nxiList(lambda);
 }
 
-void AptHelper::onRunAptUpdate() {
+void NxiHelper::onRunNxiUpdate() {
   function<void(int)> lambda = [=](int returnVal) {
-    emit onAptUpdateComplete();
+    emit onNxiUpdateComplete();
   };
 
-  this->aptUpdate(lambda);
+  this->nxiUpdate(lambda);
 }
 
-void AptHelper::onRunAptUpgrade() {
+void NxiHelper::onRunNxiUpgrade() {
   function<void(int)> lambda = [=](int returnVal) {
-    emit onAptUpgradeComplete();
+    emit onNxiUpgradeComplete();
   };
-  this->aptUpgrade(lambda);
+  this->nxiUpgrade(lambda);
 }

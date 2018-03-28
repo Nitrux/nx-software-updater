@@ -2,29 +2,22 @@
 #define INTERACTORS_PACKAGELISTINTERACTOR_H
 
 #include "interactor.h"
-#include "../helpers/apthelper.h"
-#include "../ui/packagelistviewcontroller.h"
 #include "../listeners/packagelistlistener.h"
+#include "../entities/packagemanager.h"
 
 class PackageListInteractor : public Interactor {
   Q_OBJECT
 
  private:
-  AptHelper* aptHelper;
+  PackageManager* packageManager;
   PackageListListener* listener;
 
  public:
-  PackageListInteractor(AptHelper* aptHelper,
+  PackageListInteractor(PackageManager* packageManager,
                         PackageListListener* viewController);
   virtual ~PackageListInteractor();
 
   void execute();
-
- public slots:
-  void onAptListComplete(QList<PackageDTO*> packageList);
-
- signals:
-  void runAptList();
 };
 
 #endif
