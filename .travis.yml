@@ -17,6 +17,9 @@ after_success:
 
 after_failure:
   - echo "Failure"
+  - ls ./
+  - echo "######################################"
+  - ls ../
 
 # branches:
   # except:
