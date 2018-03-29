@@ -3,23 +3,19 @@ sudo: required
 services:
   - docker
 
+addons:
+  apt:
+    packages:
+      - realpath
+
 script:
  - docker pull ubuntu:bionic
  - docker run --rm -v $(pwd)/:/build/ -w /build/ ubuntu:bionic /bin/bash travis-build.sh
 
 after_success:
-  - ls ./
-  - echo "######################################"
-  - ls ../
-  # - wget https://raw.githubusercontent.com/nomad-desktop/nxos-repository-util/master/nxos-repository-util.sh -O nxos-repository-util.sh
-  # - chmod +x nxos-repository-util.sh
-  # - ./nxos-repository-util.sh upload testing $PWD/AppImageKit/build/libappimage*.deb
-
-after_failure:
-  - echo "Failure"
-  - ls ./
-  - echo "######################################"
-  - ls ../
+  - wget https://raw.githubusercontent.com/nomad-desktop/nxos-repository-util/master/nxos-repository-util.sh -O nxos-repository-util.sh
+  - chmod +x nxos-repository-util.sh
+  - ./nxos-repository-util.sh upload testing *.deb
 
 # branches:
   # except:
