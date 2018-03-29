@@ -11,7 +11,7 @@ wget -qO - 'http://archive.neon.kde.org/public.key' | apt-key add -
 apt-get --yes update
 apt-get --yes dist-upgrade
 apt-get --yes install devscripts lintian build-essential automake autotools-dev equivs
-mk-build-deps -i debian/control
+apt-get build-dep ./
 
 ### Build Deb
 mkdir build
