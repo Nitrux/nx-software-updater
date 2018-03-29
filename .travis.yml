@@ -21,17 +21,17 @@ branches:
     - master
 
 deploy:
-  provider: script
-  script: nxos-repository-util.sh upload development *.deb
-  on:
-    all_branches: true
-    condition: $TRAVIS_BRANCH != testing
-
-deploy:
-  provider: script
-  script: nxos-repository-util.sh upload testing *.deb
-  on:
-    condition: $TRAVIS_BRANCH = testing
+  - provider: script
+    script: nxos-repository-util.sh upload testing *.deb
+    skip_cleanup: true
+    on:
+      branch: testing
+  - provider: script
+    script: nxos-repository-util.sh upload development *.deb
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH != testing
 
 notifications:
   email: false
