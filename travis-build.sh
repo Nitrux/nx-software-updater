@@ -15,4 +15,4 @@ apt-get --yes install devscripts lintian cmake extra-cmake-modules build-essenti
 ### Build Deb
 mkdir build
 cd build
-debuild -b -uc -us
+debuild --check-dirname-level 0 -b -uc -us
