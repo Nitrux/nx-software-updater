@@ -13,4 +13,8 @@ apt-get --yes dist-upgrade
 apt-get --yes install devscripts lintian cmake extra-cmake-modules build-essential automake autotools-dev g++ debhelper qtbase5-dev qtdeclarative5-dev libkf5auth-dev libkf5coreaddons-dev libkf5kcmutils-dev libkf5i18n-dev libkf5plasma-dev libkf5kdelibs4support-dev libkf5declarative-dev
 
 ### Build Deb
-debuild -b -us -uc
+$(
+    mkdir build
+    cd build
+    debuild -b -us -uc
+)
