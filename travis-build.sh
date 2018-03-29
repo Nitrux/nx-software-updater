@@ -14,7 +14,7 @@ apt-get --yes install devscripts lintian build-essential automake autotools-dev 
 mk-build-deps -i -t "apt-get --yes" -r
 
 ### Build Deb
-mkdir build
-mv ./* build/ # Hack for debuild
-cd build
+mkdir source
+mv ./* source/ # Hack for debuild
+cd source
 debuild -b -uc -us
