@@ -17,8 +17,9 @@ script:
  - docker run --rm -v $(pwd)/:/build/ -w /build/ ubuntu:bionic /bin/bash travis-build.sh
 
 branches:
-  except:
+  only:
     - master
+    - development
 
 deploy:
   - provider: script
