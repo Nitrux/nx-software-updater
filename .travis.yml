@@ -25,13 +25,13 @@ deploy:
     script: ./source/nxos-repository-util.sh upload testing *.deb
     skip_cleanup: true
     on:
-      branch: testing
+      branch: master
+      
   - provider: script
     script: ./source/nxos-repository-util.sh upload development *.deb
     skip_cleanup: true
     on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH != testing
+      branch: development
 
 notifications:
   email: false
